@@ -23,6 +23,8 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use(express.static('./web_app'));
+
 // Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
 //app.use("/api/", jwt({ secret: config.secret}));
 
