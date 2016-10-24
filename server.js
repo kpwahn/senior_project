@@ -1,0 +1,129 @@
+var http = require('http');
+var express = require('express')
+var mongoose = require('mongoose');
+var jwt    = require('jsonwebtoken');
+/*****************************************************************************
+* FILES
+******************************************************************************/
+var memberUtil = require('./util/memberUtil')
+var accountUtil = require('./util/accountUtil')
+var transactionUtil = require('./util/transactionUtil')
+var authUtil = require('./util/authenticateUtil');
+var config = require('./config');
+
+var app = express();
+/*****************************************************************************
+* ESTABLISH CONNECTION TO DATABASE
+******************************************************************************/
+mongoose.connect(config.database);
+
+app.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+// Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
+//app.use("/api/", jwt({ secret: config.secret}));
+
+/***********************************************
+*   Send all requests through here
+***********************************************/
+function getRequestInfo(req, callback){
+
+    var info = "";
+    req.on("data",  function(data){
+        info += data;
+    });
+	
+    req.on("end", function(){
+		info = JSON.parse(info);
+        callback(info);
+    });
+}
+
+function isAuthenticated(info, callback){
+	 // check header or url parameters or post parameters for token
+	  if (info.token) {
+		 
+		// verifies secret and checks exp
+		jwt.verify(info.token, config.secret, function(err, decoded) {
+			
+		  if (err) {
+			return callback({ success: false, message: 'Failed to authenticate token.' });    
+		  } else {
+			callback(info);
+		  }
+		});
+
+	  } else {
+		  //No token
+		  callback({ 
+			  status: 403,
+			  success: false, 
+			  message: 'No token provided.' 
+		  });
+
+	  }
+}
+
+/*****************************************************************************
+* ENDPOINTS
+******************************************************************************/
+app.post('/authenticate', function(req, res) {
+	getRequestInfo(req, function(info){
+		authUtil.authenticate(info, function(result){
+			res.send(result);
+		});
+	});
+});
+
+app.post('/createNewMember', function(req, res) {
+	getRequestInfo(req, function(info){
+		memberUtil.createNewMember(info, function(result){
+			res.send(result);
+		});
+	});
+});
+
+// In order to create an account you must have the members _id value (maybe implement a unique member number?
+app.post('/createAccount', function(req, res) {
+	getRequestInfo(req, function(info){
+		isAuthenticated(info, function(info){
+			accountUtil.createAccount(info, function(result){
+				res.send(result);
+			});
+		});
+	});
+});
+
+app.post('/getAccounts', function(req, res) {
+	getRequestInfo(req, function(info){
+		isAuthenticated(info, function(info){
+			accountUtil.getAccounts(info, function(result){
+				res.send(result);
+			});
+		});
+	});
+});
+
+app.post('/makeTransaction', function(req, res) {
+	getRequestInfo(req, function(info){
+		transactionUtil.makeTransaction(info, function(result){
+			res.send(result);
+		})
+	});
+});
+
+//TODO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+app.post('/getAllMembers', function(req, res) {
+	  memberUtil.getAllMembers(function(result){
+			res.send(result);
+		});         
+});
+
+var port = process.env.PORT || 8080;
+
+http.createServer(app).listen(port, function () {
+    console.log('Listening on port ' + port);
+});

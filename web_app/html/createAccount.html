@@ -1,0 +1,21 @@
+<div>
+{{message}}
+	<form>
+		<md-input-container>
+			<label>Account Name</label>
+			<input ng-model="account_name" required>
+		</md-input-container> 
+		<md-input-container>
+			<label>Intial Balance</label>
+			<input type="number" ng-model="intial_balance" required>
+		</md-input-container>
+		<md-input-container>
+			<label>Account Type</label>
+			<md-select ng-model="account_type" class="md-no-underline" required>
+				<md-option value="checking">Checking</md-option>
+				<md-option value="savings">Savings</md-option>
+        	</md-select>
+		</md-input-container>
+		<md-button type="submit" ng-click="createAccount()" class="md-raised md-primary" > Create Account </md-button>
+	</form>
+</div>
