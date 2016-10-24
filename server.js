@@ -125,6 +125,7 @@ app.post('/getAllMembers', function(req, res) {
 });
 
 app.get('*', function(req, res) {
+		console.log(__dirname);
         res.sendfile('web_app/index.html');
     });
 
