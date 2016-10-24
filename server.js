@@ -124,7 +124,7 @@ app.post('/getAllMembers', function(req, res) {
 		});         
 });
 
-app.get('*', function(req, res) {
+app.get('/*', function(req, res) {
         res.sendfile('./web_app/index.html');
     });
 
