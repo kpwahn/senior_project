@@ -122,6 +122,10 @@ app.post('/getAllMembers', function(req, res) {
 		});         
 });
 
+app.get('*', function(req, res) {
+        res.sendfile('web_app/index.html');
+    });
+
 var port = process.env.PORT || 8080;
 
 http.createServer(app).listen(port, function () {
