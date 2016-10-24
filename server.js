@@ -23,7 +23,7 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(express.static('./web_app'));
+app.use(express.static(__dirname + '/web_app'));  
 
 // Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
 //app.use("/api/", jwt({ secret: config.secret}));
@@ -124,7 +124,7 @@ app.post('/getAllMembers', function(req, res) {
 		});         
 });
 
-app.get('/*', function(req, res) {
+app.get('*', function(req, res) {
         res.sendfile('./web_app/index.html');
     });
 
