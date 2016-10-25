@@ -57,6 +57,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 	
 	function makeRequest(json, endpoint){
 		json["memberId"] =  loginService.memberId;
+		json["token"] = loginService.member.token;
 		
 		$http.post(loginService.baseURL + "/makeTransaction", json)
 			.success(function (data) {
