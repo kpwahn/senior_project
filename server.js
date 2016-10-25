@@ -23,6 +23,9 @@ app.use(function(req, res, next){
     next();
 });
 
+console.log("HERE :" + __dirname);
+
+app.use('/js', express.static(__dirname + '/js'));
 app.use(express.static('./web_app'));  
 
 // Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
