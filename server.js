@@ -99,9 +99,13 @@ app.post('/createNewMember', function(req, res) {
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
 		isAuthenticated(info, function(info){
-			accountUtil.createAccount(info, function(result){
-				res.send(result);
-			});
+			if(info.status == 403){
+				res.send(info);
+			}else {
+				accountUtil.createAccount(info, function(result){
+					res.send(result);
+				});
+			}
 		});
 	});
 });
@@ -122,9 +126,15 @@ app.post('/getAccounts', function(req, res) {
 
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
-		transactionUtil.makeTransaction(info, function(result){
-			res.send(result);
-		})
+		isAuthenticated(info, function(info){
+			if(info.status == 403){
+				res.send(info);
+			}else {
+				transactionUtil.makeTransaction(info, function(result){
+					res.send(result);
+				})
+			}
+		});
 	});
 });
 
