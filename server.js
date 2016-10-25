@@ -129,7 +129,7 @@ app.post('/getAllMembers', function(req, res) {
 
 app.get('/index', function(req, res) {
 		console.log(__dirname + "/web_app/index.html");
-		res.sendFile('/web_app/index.html', { root: __dirname });
+		res.sendfile('/web_app/index.html', { root: __dirname });
     });
 
 var port = process.env.PORT || 8080;
