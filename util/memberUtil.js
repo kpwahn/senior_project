@@ -37,12 +37,12 @@ exports.createNewMember = function(info, callback){
 /*****************************************************************************
 * GET ALL MEMBERS DELETE THIS
 ******************************************************************************/
-//exports.getAllMembers = function(callback){
-//	Member.find(function(err, members){
-//		if (err){
-//      		callback({message: "Error at memberUtil - createNewMember - line 43", error: err});
-//		}else {	
-//    		callback({message: "Returning all members",	members: members});
-//		}
-//	});
-//}
+exports.getAllMembers = function(callback){
+	Member.find(function(err, members){
+		if (err){
+      		callback({message: "Error at memberUtil - createNewMember - line 43", error: err});
+		}else {	
+    		callback({message: "Returning all members",	members: members});
+		}
+	});
+}

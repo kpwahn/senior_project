@@ -145,11 +145,11 @@ app.post('/makeTransaction', function(req, res) {
 });
 
 //TODO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//app.post('/getAllMembers', function(req, res) {
-//	  memberUtil.getAllMembers(function(result){
-//			res.send(result);
-//		});         
-//});
+app.post('/getAllMembers', function(req, res) {
+	  memberUtil.getAllMembers(function(result){
+			res.send(result);
+		});         
+});
 
 app.get('/index', function(req, res) {
 		console.log(__dirname + "/web_app/index.html");
@@ -161,13 +161,3 @@ var port = process.env.PORT || 8080;
 server = https.createServer(options, app).listen(port, function () {
     console.log('Securely listening on port ' + port);
 });
-
-//https.createServer(options, function (req, res) {
-//    res.end("Hi from HTTPS");
-//}).listen(port, function () {
-//    console.log('Listening on port ' + port);
-//});
-
-//http.createServer(app).listen(port, function () {
-//    console.log('Listening on port ' + port);
-//});
