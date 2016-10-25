@@ -61,7 +61,7 @@ function isAuthenticated(info, callback){
 
 	  } else {
 		  
-		  console.log("no token was provided. Shame.);
+		  console.log("no token was provided. Shame.");
 		  //No token
 		  callback({ 
 			  status: 403,
