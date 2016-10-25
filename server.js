@@ -47,13 +47,14 @@ function getRequestInfo(req, callback){
 function isAuthenticated(info, callback){
 	 // check header or url parameters or post parameters for token
 	  if (info.token) {
-		 
+		 console.log("Somehow you got here, without a token...");
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
 			
 		  if (err) {
 			return callback({ success: false, message: 'Failed to authenticate token.' });    
 		  } else {
+			  console.log("The token verify was successful? " + decoded);
 			callback(info);
 		  }
 		});
@@ -124,7 +125,7 @@ app.post('/getAllMembers', function(req, res) {
 		});         
 });
 
-app.get('*', function(req, res) {
+app.get('/*', function(req, res) {
 		console.log(__dirname + "/web_app/index.html");
         res.sendfile('/web_app/index.html');
     });
