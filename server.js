@@ -25,8 +25,8 @@ app.use(function(req, res, next){
 
 console.log("HERE :" + __dirname);
 
-app.use('/js', express.static(__dirname + '/js'));
-app.use(express.static('./web_app'));  
+app.use(express.static(__dirname + '/web_app'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 // Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
 //app.use("/api/", jwt({ secret: config.secret}));
