@@ -21,6 +21,7 @@ angular.module('bankApp').controller('createAccountController', ['$scope', '$htt
 		$http.post(loginService.baseURL + "/createAccount", json)
 		.success(function (data) {
 			console.log("Sucess! " + JSON.stringify(data));
+			window.location.href = "#";
 		}).
 		error(function (err) {
 			console.log("Error with the request " + err);
