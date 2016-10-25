@@ -30,12 +30,10 @@ exports.createAccount = function(info, callback){
 }
 
 exports.getAccounts = function(info, callback){
-	console.log("MemberID: " + info.memberId);
 	Account.find({"memberId" : info.memberId}, function(err, accounts) {
 		if(err){
 		
 		}else {
-			console.log("Accounts: " + accounts);
 			accounts.forEach(function(account) {
 				//Mask the account number
 				account.accountNumber = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 

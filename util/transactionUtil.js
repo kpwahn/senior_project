@@ -43,8 +43,6 @@ function updateAmount(amount, change, type){
 }
 
 function submitTransaction(transaction, info, callback){
-	console.log("type: " + info.type);
-	
 	transaction.save(function(err, data) {
 		if (err) {
 			callback({message: "Error at transactionUtil - submitTransaction - line 36", error: err});
