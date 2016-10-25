@@ -62,6 +62,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 			.success(function (data) {
 				//console.log("Sucess! " + JSON.stringify(data));
 				$scope.accounts = data;
+				window.location.href = "#";
 			}).
 			error(function (err) {
 				console.log("Error with the request " + err);
