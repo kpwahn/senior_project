@@ -23,8 +23,6 @@ app.use(function(req, res, next){
     next();
 });
 
-console.log("HERE :" + __dirname);
-
 app.use(express.static(__dirname + '/web_app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
