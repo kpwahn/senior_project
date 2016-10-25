@@ -156,7 +156,7 @@ app.get('/index', function(req, res) {
 		res.sendfile('/web_app/index.html', { root: __dirname });
     });
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 443;
 
 server = https.createServer(options, app).listen(port, function () {
     console.log('Securely listening on port ' + port);
