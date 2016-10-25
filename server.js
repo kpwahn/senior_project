@@ -60,6 +60,8 @@ function isAuthenticated(info, callback){
 		});
 
 	  } else {
+		  
+		  console.log("no token was provided. Shame.);
 		  //No token
 		  callback({ 
 			  status: 403,
@@ -125,7 +127,7 @@ app.post('/getAllMembers', function(req, res) {
 		});         
 });
 
-app.get('/*', function(req, res) {
+app.get('/index', function(req, res) {
 		console.log(__dirname + "/web_app/index.html");
         res.sendfile('/web_app/index.html');
     });
