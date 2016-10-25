@@ -50,22 +50,17 @@ function getRequestInfo(req, callback){
 function isAuthenticated(info, callback){
 	 // check header or url parameters or post parameters for token
 	  if (info.token) {
-		 console.log("Somehow you got here, without a token... " + info.token);
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
 			
 		  if (err) {
-			console.log("No go with the to to");
 			return callback({ success: false, message: 'Failed to authenticate token.' });    
 		  } else {
-			  console.log("The token verify was successful? " + decoded);
 			callback(info);
 		  }
 		});
 
 	  } else {
-		  
-		  console.log("no token was provided. Shame.");
 		  //No token
 		  callback({ 
 			  status: 403,
