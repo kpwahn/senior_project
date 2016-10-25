@@ -1,4 +1,17 @@
-var http = require('http');
+/****************************************************************************
+*	SSL Certificate Informaton
+****************************************************************************/
+var fs = require('fs');
+
+var hskey = fs.readFileSync('hacksparrow-key.pem');
+var hscert = fs.readFileSync('hacksparrow-cert.pem')
+
+var options = {
+    key: hskey,
+    cert: hscert
+};
+
+var https = require('https');
 var express = require('express')
 var mongoose = require('mongoose');
 var jwt    = require('jsonwebtoken');
@@ -145,6 +158,16 @@ app.get('/index', function(req, res) {
 
 var port = process.env.PORT || 8080;
 
-http.createServer(app).listen(port, function () {
-    console.log('Listening on port ' + port);
+server = https.createServer(options, app).listen(port, function () {
+    console.log('Securely listening on port ' + port);
 });
+
+//https.createServer(options, function (req, res) {
+//    res.end("Hi from HTTPS");
+//}).listen(port, function () {
+//    console.log('Listening on port ' + port);
+//});
+
+//http.createServer(app).listen(port, function () {
+//    console.log('Listening on port ' + port);
+//});

@@ -1,1 +1,7 @@
+#This is for the amazon server
 bank.pem
+
+#This is for my test SSL certificate
+key.pem
+hacksparrow-cert.pem
+hacksparrow-key.pem
