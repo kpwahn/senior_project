@@ -109,9 +109,13 @@ app.post('/createAccount', function(req, res) {
 app.post('/getAccounts', function(req, res) {
 	getRequestInfo(req, function(info){
 		isAuthenticated(info, function(info){
-			accountUtil.getAccounts(info, function(result){
-				res.send(result);
-			});
+			if(info.status == 403){
+				res.send(info);
+			}else {
+				accountUtil.getAccounts(info, function(result){
+					res.send(result);
+				});
+			}
 		});
 	});
 });
