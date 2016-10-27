@@ -14,7 +14,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 			"token" : loginService.member.token
 		}
 		
-		$http.post(loginService.baseURL + "/getAccounts", json)
+		$http.post(loginService.baseURL + "/getAccounts/", json)
 			.success(function (data) {	
 				$scope.accounts = data;
 			

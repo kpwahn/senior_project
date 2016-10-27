@@ -8,7 +8,7 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 			}
 		
 		
-		$http.post(loginService.baseURL + "/authenticate", json)
+		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
 			if(data.data.token){
 				

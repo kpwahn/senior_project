@@ -59,7 +59,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 		json["memberId"] =  loginService.memberId;
 		json["token"] = loginService.member.token;
 		
-		$http.post(loginService.baseURL + "/makeTransaction", json)
+		$http.post(loginService.baseURL + "/makeTransaction/", json)
 			.success(function (data) {
 				//console.log("Sucess! " + JSON.stringify(data));
 				$scope.accounts = data;
