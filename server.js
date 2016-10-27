@@ -8,7 +8,7 @@ var hscert = fs.readFileSync('hacksparrow-cert.pem');
 
 var options = {
     key: fs.readFileSync('54_244_96_10.key'),
-    cert: fs.readFileSync('54_244_96_10.csr ')
+    cert: fs.readFileSync('54_244_96_10.csr')
 };
 
 var https = require('https');
