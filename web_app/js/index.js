@@ -46,8 +46,8 @@ bankApp.factory('loginService', function($http){
 	
 	var factory = {}
 	
-	//factory.baseURL = "http://54.244.96.10";
-	factory.baseURL = "http://127.0.0.1:8080";
+	factory.baseURL = "http://54.244.96.10";
+	//factory.baseURL = "http://127.0.0.1:8080";
 	
 	factory.previousPage = "#/";
 	
