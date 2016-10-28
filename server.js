@@ -7,8 +7,9 @@ var hskey = fs.readFileSync('hacksparrow-key.pem');
 var hscert = fs.readFileSync('hacksparrow-cert.pem');
 
 var options = {
-    key: hskey,
-    cert: hscert
+    ca: fs.readFileSync('www_kpwahnschaffe_com.ca-bundle'),
+	key: fs.readFileSync('free_key.key'),
+    cert: fs.readFileSync('www_kpwahnschaffe_com.crt'),
 };
 
 var https = require('https');
