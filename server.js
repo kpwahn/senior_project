@@ -154,11 +154,6 @@ app.get('/index', function(req, res) {
 		res.sendfile('/web_app/index.html', { root: __dirname });
     });
 
-app.get('/', function(req, res) {
-		console.log("Durka durka");
-		res.sendfile('/web_app/index.html', { root: __dirname });
-    });
-
 var port = 443;
 
 server = https.createServer(options, app).listen(port, function () {
