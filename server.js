@@ -4,9 +4,9 @@
 var fs = require('fs');
 
 var options = {
-    ca: fs.readFileSync('/certificates/www_kpwahnschaffe_com.ca-bundle'),
-	key: fs.readFileSync('/certificates/free_key.key'),
-    cert: fs.readFileSync('/certificates/www_kpwahnschaffe_com.crt'),
+    ca: fs.readFileSync('./certificates/www_kpwahnschaffe_com.ca-bundle'),
+	key: fs.readFileSync('./certificates/free_key.key'),
+    cert: fs.readFileSync('./certificates/www_kpwahnschaffe_com.crt'),
 };
 
 var https = require('https');
