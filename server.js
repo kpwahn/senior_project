@@ -142,13 +142,6 @@ app.post('/makeTransaction', function(req, res) {
 	});
 });
 
-//TODO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-app.post('/getAllMembers', function(req, res) {
-	  memberUtil.getAllMembers(function(result){
-			res.send(result);
-		});         
-});
-
 app.get('/index', function(req, res) {
 		console.log(__dirname + "/web_app/index.html");
 		res.sendfile('/web_app/index.html', { root: __dirname });
