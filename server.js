@@ -158,6 +158,6 @@ var http = require('http');
 http.createServer(function (req, res) {
 	console.log("We made it!");
 	res.redirect('https://kpwahnschaffe.com');
-}).listen(80, function () {
+}).listen(8080, function () {
 	console.log("listening for http requests on 80");
 });
