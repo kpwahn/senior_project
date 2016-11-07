@@ -149,14 +149,15 @@ app.get('/index', function(req, res) {
 
 var port = 443;
 
-server = https.createServer(options, app).listen(port, function () {
-    console.log('Securely listening on port ' + port);
-});
+//server = https.createServer(options, app).listen(port, function () {
+//    console.log('Securely listening on port ' + port);
+//});
 
 // Redirect from http port 80 to https
 var http = require('http');
 http.createServer(function (req, res) {
+	console.log("We made it!");
 	res.redirect('https://kpwahnschaffe.com');
-}).listen(80, function () {
-	console.log("listening for http requests on 8080");
+}).listen(8080, function () {
+	console.log("listening for http requests on 80");
 });
