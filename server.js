@@ -156,7 +156,7 @@ var port = 443;
 var http = require('http');
 var app2 = express();
 
-app2.get('*', function(req, res) {
+app2.get('/*', function(req, res) {
 		console.log("We made it!");
 		res.redirect('https://kpwahnschaffe.com');
 });
