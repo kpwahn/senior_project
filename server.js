@@ -153,14 +153,15 @@ server = https.createServer(options, app).listen(port, function () {
     console.log('Securely listening on port ' + port);
 });
 
+
+/*****************************************************************************
+* Create another server to reroute http requests to https
+******************************************************************************/
 var http = require('http');
 var app2 = express();
 
-app2.get('/*', function(req, res) {
-		console.log("We made it!");
-		
-		res.redirect('https://kpwahnschaffe.com');
-		//res.send({message: "Go Team"});
+app2.get('/*', function(req, res) {	
+	res.redirect('https://kpwahnschaffe.com');
 });
 
 // Redirect from http port 8080 to https
