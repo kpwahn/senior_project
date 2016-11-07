@@ -149,9 +149,9 @@ app.get('/index', function(req, res) {
 
 var port = 443;
 
-//server = https.createServer(options, app).listen(port, function () {
-//    console.log('Securely listening on port ' + port);
-//});
+server = https.createServer(options, app).listen(port, function () {
+    console.log('Securely listening on port ' + port);
+});
 
 var http = require('http');
 var app2 = express();
@@ -160,7 +160,7 @@ app2.get('/*', function(req, res) {
 		console.log("We made it!");
 		
 		res.redirect('https://kpwahnschaffe.com');
-		res.send({message: "Go Team"});
+		//res.send({message: "Go Team"});
 });
 
 // Redirect from http port 8080 to https
