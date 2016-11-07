@@ -156,8 +156,7 @@ server = https.createServer(options, app).listen(port, function () {
 // Redirect from http port 80 to https
 var http = require('http');
 http.createServer(function (req, res) {
-	console.log("HERE");
 	res.redirect('https://kpwahnschaffe.com');
-    //res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    //res.end();
-}).listen(80);
+}).listen(80, function () {
+	console.log("listening for http requests on 8080");
+});
