@@ -160,4 +160,4 @@ http.createServer(function (req, res) {
 	res.redirect('https://kpwahnschaffe.com');
     //res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     //res.end();
-}).listen(8080);
+}).listen(80);
