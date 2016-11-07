@@ -153,11 +153,15 @@ var port = 443;
 //    console.log('Securely listening on port ' + port);
 //});
 
-// Redirect from http port 80 to https
 var http = require('http');
-http.createServer(function (req, res) {
-	console.log("We made it!");
-	res.redirect('https://kpwahnschaffe.com');
-}).listen(8080, function () {
-	console.log("listening for http requests on 80");
+var app2 = express();
+
+app2.get('*', function(req, res) {
+		console.log("We made it!");
+		res.redirect('https://kpwahnschaffe.com');
+});
+
+// Redirect from http port 8080 to https
+http.createServer(app2).listen(8080	, function () {
+	console.log("listening for http requests on 8080");
 });
