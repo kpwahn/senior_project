@@ -2,27 +2,29 @@
 	<md-tabs md-border-bottom md-autoselect>
 		<md-tab label="Purchase">
 			<form>
-				<md-input-container>
-				<label>Account</label>
-				<md-select ng-model="purchaseAccount" class="md-no-underline" required>
-					<div ng-repeat="account in accounts">
-						<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-					</div>
-				</md-select>
-				</md-input-container>
-				<md-input-container>
-					<label>Amount</label>
-					<input ng-model="purchaseAmount" required>
-				</md-input-container> 
-				<md-input-container>
-					<label>Location</label>
-					<input ng-model="purchaseLocation" required>
-				</md-input-container> 
-				<md-input-container>
-					<label>Comment</label>
-					<input  ng-model="purchaseComment" required>
-				</md-input-container> 
-				<md-button type="submit" ng-click="purchase()" class="md-raised md-primary" > Submit Transaction </md-button>
+				<div layout="row">
+					<md-input-container>
+					<label>Account</label>
+					<md-select ng-model="purchaseAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container>
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="purchaseAmount" required>
+					</md-input-container> 
+					<md-input-container>
+						<label>Location</label>
+						<input ng-model="purchaseLocation" required>
+					</md-input-container> 
+					<md-input-container>
+						<label>Comment</label>
+						<input  ng-model="purchaseComment" required>
+					</md-input-container> 
+					<md-button type="submit" ng-click="purchase()" class="md-raised md-primary" > Submit Transaction </md-button>
+				</div>
 			</form>
 		</md-tab>
 		<md-tab label="Transfer">
