@@ -86,6 +86,7 @@ function isAuthenticated(info, callback){
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
 		authUtil.authenticate(info, function(result){
+			result.status = 200;
 			res.send(result);
 		});
 	});
@@ -94,6 +95,7 @@ app.post('/authenticate', function(req, res) {
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		memberUtil.createNewMember(info, function(result){
+			result.status = 200;
 			res.send(result);
 		});
 	});
@@ -107,6 +109,7 @@ app.post('/createAccount', function(req, res) {
 				res.send(info);
 			}else {
 				accountUtil.createAccount(info, function(result){
+					result.status = 200;
 					res.send(result);
 				});
 			}
@@ -121,6 +124,7 @@ app.post('/getAccounts', function(req, res) {
 				res.send(info);
 			}else {
 				accountUtil.getAccounts(info, function(result){
+					result.status = 200;
 					res.send(result);
 				});
 			}
@@ -135,6 +139,7 @@ app.post('/makeTransaction', function(req, res) {
 				res.send(info);
 			}else {
 				transactionUtil.makeTransaction(info, function(result){
+					result.status = 200;
 					res.send(result);
 				})
 			}
