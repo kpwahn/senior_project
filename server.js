@@ -57,27 +57,29 @@ function getRequestInfo(req, callback){
 }
 
 function isAuthenticated(info, callback){
-	 // check header or url parameters or post parameters for token
-	  if (info.token) {
+	
+	console.log("Checking authorization " + info);
+	// check header or url parameters or post parameters for token
+	if (info.token) {
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
-			
-		  if (err) {
-			return callback({ success: false, message: 'Failed to authenticate token.' });    
-		  } else {
-			callback(info);
-		  }
-		});
 
+	  if (err) {
+		return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
 	  } else {
-		  //No token
-		  callback({ 
-			  status: 403,
-			  success: false, 
-			  message: 'No token provided.' 
-		  });
-
+		callback(info);
 	  }
+	});
+
+	} else {
+	  //No token
+	  callback({ 
+		  status: 403,
+		  success: false, 
+		  message: 'No token provided.' 
+	  });
+
+	}
 }
 
 /*****************************************************************************
@@ -167,5 +169,5 @@ app2.get('/*', function(req, res) {
 
 // Redirect from http port 8080 to https
 http.createServer(app2).listen(8080	, function () {
-	console.log("listening for http requests on 8080");
+	console.log("Listening for http requests on 8080 to reroute to https");
 });
