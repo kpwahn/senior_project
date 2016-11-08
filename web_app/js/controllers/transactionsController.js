@@ -17,12 +17,9 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 			.success(function (data) {
 				if(data.status == 403){
 					alert("Your session has timed out. Please log in");
-					// Delay the page change so the alert has time to run
-					setTimeout(function(){ 
-						loginService.member.token = null;
-						loginService.previousPage = "#/transactions"
-						window.location.href = "#/login";
-					}, 3000);
+					loginService.member.token = null;
+					loginService.previousPage = "#/transactions"
+					window.location.href = "#/login";
 					return;
 				}
 				$scope.accounts = data;
