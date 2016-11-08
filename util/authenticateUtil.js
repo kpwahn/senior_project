@@ -22,7 +22,7 @@ exports.authenticate = function(info, callback){
 				} else {	
 					// create a token
 					var token = jwt.sign(member, config.secret, {
-						expiresIn : 30 // One minute
+						expiresIn : 10 // One minute
 					});
 					
 					data = {
