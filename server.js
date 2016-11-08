@@ -57,8 +57,6 @@ function getRequestInfo(req, callback){
 }
 
 function isAuthenticated(info, callback){
-	
-	console.log("Checking authorization " + info);
 	// check header or url parameters or post parameters for token
 	if (info.token) {
 		// verifies secret and checks exp
