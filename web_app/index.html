@@ -30,10 +30,12 @@
         <div ng-controller="indexController">
             <md-toolbar layout="row" layout-align="space-between center" layout-sm="column">
                 <div class="md-toolbar-tools">
-                <md-button ng-href="#/" md-no-ink> BANK </md-button>
+					<md-button ng-href="#/" md-no-ink> <span>BANK</span> </md-button>
 
                 <span flex></span>
-                    <md-button class="md-raised" ng-href="#createNewMember"> Become A Member </md-button>
+					<div ng-hide="isBecomeAMemberHidden">
+                    	<md-button class="md-raised" ng-href="#createNewMember"> Become A Member </md-button>
+					</div>
 					<md-button class="md-raised" ng-href="#transactions"> Transactions </md-button>
 					<md-button class="md-raised" ng-href="#createAccount"> New Account </md-button>
 					<md-button class="md-raised" ng-click="logout()"> Logout </md-button>

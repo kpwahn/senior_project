@@ -32,7 +32,8 @@ bankApp.config(function($routeProvider) {
 });
 
 bankApp.controller('indexController', ['$scope', 'loginService', function($scope, loginService) {
-    //This controller is for the index.html page
+	
+	//This controller is for the index.html page
 	$scope.logout  = function(){
 		loginService.member.token = "";
 		loginService.username = "";
@@ -40,6 +41,8 @@ bankApp.controller('indexController', ['$scope', 'loginService', function($scope
 		loginService.previousPage = "#";
 		window.location.href = '#login';
 	}
+
+	
 }]);
 
 bankApp.factory('loginService', function($http){
