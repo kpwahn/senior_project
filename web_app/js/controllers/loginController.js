@@ -12,7 +12,6 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 			if(data.data.token){
 				
 				loginService.member.token = data.data.token;
-				console.log("Token set: " + loginService.member.token);
 				loginService.username = json.username;
 				loginService.memberId = data.data.memberId;
 

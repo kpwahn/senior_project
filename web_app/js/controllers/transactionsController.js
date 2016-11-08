@@ -16,11 +16,13 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 	$http.post(loginService.baseURL + "/getAccounts", json)
 			.success(function (data) {
 				if(data.status == 403){
-					loginService.member.token = null;
 					alert("Your session has timed out. Please log in");
-					console.log("HERE");
-					loginService.previousPage = "#/transactions"
-					window.location.href = "#/login";
+					// Delay the page change so the alert has time to run
+					setTimeout(function(){ 
+						loginService.member.token = null;
+						loginService.previousPage = "#/transactions"
+						window.location.href = "#/login";
+					}, 1000);
 					return;
 				}
 				$scope.accounts = data;
