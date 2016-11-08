@@ -10,7 +10,6 @@ exports.createNewMember = function(info, callback){
 		if (err){
 			callback({message: "Error at memberUtil - createNewMember - line 11", error: err});
 		}else {
-
 			var new_member = new Member();
 			
 			new_member.member_name = info.member_name;
@@ -23,7 +22,6 @@ exports.createNewMember = function(info, callback){
 			//Call save on the Account model which is a Mongoose function that will save the model to the MongoDB database
 			new_member.save(function(err, data) {
 			if (err) {
-				console.log(JSON.stringify(err));
 				callback({message: "Error at memberUtil - createNewMember - line 29", error: err});
 			}else {
 				//TODO passback account numbers and such, NOT PASSWORD
