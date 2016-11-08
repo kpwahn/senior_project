@@ -21,6 +21,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 					alert("Your session has timed out. Please log in and try again");
 					loginService.previousPage = "#/transactions"
 					window.location.href = "#/login";	
+					break;
 				}
 				$scope.accounts = data;
 
