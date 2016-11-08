@@ -16,8 +16,14 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		
 		$http.post(loginService.baseURL + "/getAccounts/", json)
 			.success(function (data) {	
+				if(data.status == 403){
+					loginService.member.token = null;
+					alert("Your session has timed out. Please log in and try again");
+					loginService.previousPage = "#/transactions"
+					window.location.href = "#/login";	
+				}
 				$scope.accounts = data;
-				console.log(data);
+
 				//Trimming the dates
 				$scope.accounts.forEach(function(account){
 					account.transactions.forEach(function(transaction){
