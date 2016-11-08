@@ -7,17 +7,17 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 				"password" : $scope.password
 			}
 		
-		
 		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
 			if(data.data.token){
 				
 				loginService.member.token = data.data.token;
+				console.log("Token set: " + loginService.member.token);
 				loginService.username = json.username;
 				loginService.memberId = data.data.memberId;
 
 				if(loginService.previousPage != "#login"){
-					setTimeout(function(){ window.location.href = loginService.previousPage; }, 3000);
+					window.location.href = loginService.previousPage;
 				}else {
 					window.location.href = "#";
 					
