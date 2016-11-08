@@ -8,6 +8,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 		return;
 	}    	
 	console.log("My token: " + loginService.member.token);
+	console.log("JSON " + json);
 	$http.post(loginService.baseURL + "/getAccounts", json)
 			.success(function (data) {
 				console.log(data);
