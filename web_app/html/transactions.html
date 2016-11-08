@@ -1,112 +1,103 @@
 <md-content class="md-padding">
-	<md-tabs md-center-tabs="true" md-border-bottom md-autoselect>
+	<md-tabs md-center-tabs="true" md-swipe-content="true" md-dynamic-height md-border-bottom md-autoselect>
 		<md-tab label="Purchase">
-			<form>
-				<div layout="row" layout-align="center center" >
-					<div layout="row" layout-wrap>
-						<br />
-						<md-input-container>
-							<label>Amount</label>
-							<input ng-model="purchaseAmount" required>
-						</md-input-container> <br />
-						<md-input-container>
-						<label>Account</label>
-						<md-select ng-model="purchaseAccount" class="md-no-underline" required>
-							<div ng-repeat="account in accounts">
-								<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-							</div>
-						</md-select>
-						</md-input-container> <br />
-						<md-input-container>
-							<label>Location</label>
-							<input ng-model="purchaseLocation" required>
-						</md-input-container> <br />
-						<md-input-container>
-							<label>Comment</label>
-							<input  ng-model="purchaseComment" required>
-						</md-input-container> <br />
-						<md-input-container>
-							<md-button type="submit" ng-click="purchase()" class="md-raised md-primary" > Submit Transaction </md-button>
-						</md-input-container>
-					</div>
-				</div>
-			</form>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<form>
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="purchaseAmount" required>
+					</md-input-container> <br />
+					<md-input-container>
+					<label>Account</label>
+					<md-select ng-model="purchaseAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<label>Location</label>
+						<input ng-model="purchaseLocation" required>
+					</md-input-container> <br />
+					<md-input-container>
+						<label>Comment</label>
+						<input  ng-model="purchaseComment" required>
+					</md-input-container> <br />
+					<md-input-container>
+						<md-button type="submit" ng-click="purchase()" class="md-raised md-primary" > Submit Transaction </md-button>
+					</md-input-container>
+				</form>
+			</section>
 		</md-tab>
 		<md-tab label="Transfer">
-			<form>
-				<div layout="row" layout-align="center center" >
-					<div layout="row" layout-wrap>
-						<md-input-container>
-						<label>From Account</label>
-						<md-select ng-model="toTransferAccount" class="md-no-underline" required>
-							<div ng-repeat="account in accounts">
-								<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-							</div>
-						</md-select>
-						</md-input-container>
-						<md-input-container>
-							<label>Amount</label>
-							<input ng-model="transferAmount" required>
-						</md-input-container> 
-						<md-input-container>
-						<label>To Account</label>
-						<md-select ng-model="fromTransferAccount" class="md-no-underline" required>
-							<div ng-repeat="account in accounts">
-								<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-							</div>
-						</md-select>
-						</md-input-container>
-						<md-input-container>
-							<md-button type="submit" ng-click="transfer()" class="md-raised md-primary" > Transfer Monies </md-button>
-						</md-input-container>
-					</div>
-				</div>
-			</form>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<form>
+					<md-input-container>
+					<label>From Account</label>
+					<md-select ng-model="toTransferAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="transferAmount" required>
+					</md-input-container> <br /> 
+					<md-input-container>
+					<label>To Account</label>
+					<md-select ng-model="fromTransferAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<md-button type="submit" ng-click="transfer()" class="md-raised md-primary" > Transfer Monies </md-button>
+					</md-input-container>
+				</form>
+			</section>
 		</md-tab>
 		<md-tab label="Deposit">
-			<form>
-				<div layout="row" layout-align="center center" >
-					<div layout="row" layout-wrap>
-						<md-input-container>
-							<label>Amount</label>
-							<input ng-model="depositAmount" required>
-						</md-input-container> 
-						<md-input-container>
-						<label>Account</label>
-						<md-select ng-model="depositAccount" class="md-no-underline" required>
-							<div ng-repeat="account in accounts">
-								<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-							</div>
-						</md-select>
-						</md-input-container>
-						<md-input-container>
-							<md-button type="submit" ng-click="deposit()" class="md-raised md-primary" > Deposit </md-button>
-						</md-input-container>
-					</div>
-				</div>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<form>
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="depositAmount" required>
+					</md-input-container> <br />
+					<md-input-container>
+					<label>Account</label>
+					<md-select ng-model="depositAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<md-button type="submit" ng-click="deposit()" class="md-raised md-primary" > Deposit </md-button>
+					</md-input-container>	
+				</section>
 			</form>
 		</md-tab>
 		<md-tab label="Withdraw">
-			<form>
-				<div layout="row" layout-align="center center" >
-					<div layout="row" layout-wrap>
-						<md-input-container>
-							<label>Amount</label>
-							<input ng-model="withdrawAmount" required>
-						</md-input-container> 
-						<md-input-container>
-						<label>Account</label>
-						<md-select ng-model="withdrawAccount" class="md-no-underline" required>
-							<div ng-repeat="account in accounts">
-								<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-							</div>
-						</md-select>
-						</md-input-container>
-						<md-input-container>
-							<md-button type="submit" ng-click="withdraw()" class="md-raised md-primary" > Withdraw </md-button>
-						</md-input-container>
-					</div>
-				</div>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<form>
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="withdrawAmount" required>
+					</md-input-container> <br />
+					<md-input-container>
+					<label>Account</label>
+					<md-select ng-model="withdrawAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<md-button type="submit" ng-click="withdraw()" class="md-raised md-primary" > Withdraw </md-button>
+					</md-input-container> <br />
+				</section>
 			</form>
 		</md-tab>
 	</md-tabs>

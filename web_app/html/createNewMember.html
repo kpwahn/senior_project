@@ -1,21 +1,25 @@
-<div>
-	<form>
-    <md-input-container>
-        <label>Full Name</label>
-        <input ng-model="name" required>
-    </md-input-container> 
-	<md-input-container>
-        <label>username</label>
-        <input ng-model="username" required>
-    </md-input-container> 
-	<md-input-container>
-        <label>password</label>
-        <input type="password" ng-model="password" required>
-    </md-input-container> 
-	<md-input-container>
-        <label>confirm password</label>
-        <input type="password" ng-model="confirm_password" required>
-    </md-input-container>
-	<md-button type="submit" ng-click="createNewMember()" class="md-raised md-primary" > Create Member </md-button>
-	</form>
-</div>
+<md-content>
+	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		<form>
+			<md-input-container>
+				<label>Full Name</label>
+				<input ng-model="name" required>
+			</md-input-container> <br />
+			<md-input-container>
+				<label>username</label>
+				<input ng-model="username" required>
+			</md-input-container> <br />
+			<md-input-container>
+				<label>password</label>
+				<input type="password" ng-model="password" required>
+			</md-input-container> <br />
+			<md-input-container>
+				<label>confirm password</label>
+				<input type="password" ng-model="confirm_password" required>
+			</md-input-container> <br />
+			<div style="text-align: center">
+				<md-button type="submit" ng-click="createNewMember()" class="md-raised md-primary" > Create Member </md-button>
+			</div>
+		</form>
+	</section>
+</md-content>
