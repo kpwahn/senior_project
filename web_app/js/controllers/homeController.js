@@ -18,8 +18,8 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 			.success(function (data) {	
 				if(data.status == 403){
 					loginService.member.token = null;
-					alert("Your session has timed out. Please log in and try again");
-					loginService.previousPage = "#/transactions"
+					alert("Your session has timed out. Please log in");
+					loginService.previousPage = "#"
 					window.location.href = "#/login";	
 					return;
 				}
