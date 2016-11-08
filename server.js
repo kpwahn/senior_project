@@ -156,6 +156,7 @@ server = https.createServer(options, app).listen(port, function () {
 
 /*****************************************************************************
 * Create another server to reroute http requests to https
+* (Don't forget to change the hosting settings (amazon ec2) to allow https on port 80, etc. 
 ******************************************************************************/
 var http = require('http');
 var app2 = express();

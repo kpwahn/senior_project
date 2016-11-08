@@ -7,7 +7,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 	} else { 
 	
 		$scope.message = "Welcome to the bank!"; 
-		$scope.accounts = {who: "said what"};
+		$scope.accounts = {};
 
 		json = {
 			"memberId" : loginService.memberId,
@@ -17,7 +17,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		$http.post(loginService.baseURL + "/getAccounts/", json)
 			.success(function (data) {	
 				$scope.accounts = data;
-			
+				console.log(data);
 				//Trimming the dates
 				$scope.accounts.forEach(function(account){
 					account.transactions.forEach(function(transaction){
