@@ -22,7 +22,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 						loginService.member.token = null;
 						loginService.previousPage = "#/transactions"
 						window.location.href = "#/login";
-					}, 1000);
+					}, 3000);
 					return;
 				}
 				$scope.accounts = data;
