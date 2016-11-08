@@ -6,22 +6,26 @@
 }
 </style>
 
-<div>
-	<list>
-		<div ng-repeat="account in accounts">
-			<h2>{{account.name}}</h2>
-			<h3>{{account.accountNumber}}</h3>
-			<p> ${{account.balance}}</p>
-			<table>
-				<tr><th>Amount</th>
-				<th>Type</th>
-				<th>Date</th></tr>
-				<tr ng-repeat="transaction in account.transactions">
-					<td>{{transaction.amount}}</td>
-					<td>{{transaction.type}}</td>
-					<td>{{transaction.date}}</td>
-				</tr>
-			</table>
+<md-content>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		<div>
+			<list>
+				<div ng-repeat="account in accounts">
+					<h2>{{account.name}}</h2>
+					<h3>{{account.accountNumber}}</h3>
+					<p> ${{account.balance}}</p>
+					<table>
+						<tr><th>Amount</th>
+						<th>Type</th>
+						<th>Date</th></tr>
+						<tr ng-repeat="transaction in account.transactions">
+							<td>{{transaction.amount}}</td>
+							<td>{{transaction.type}}</td>
+							<td>{{transaction.date}}</td>
+						</tr>
+					</table>
+				</div>
+			</list>
 		</div>
-	</list>
-</div>
+	</section>
+</md-content>
