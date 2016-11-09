@@ -6,9 +6,7 @@ exports.makeTransaction = function(info, callback){
 	
 	transaction.date = new Date();
 	transaction.type = info.type;
-	transaction.amount = info.amount;
-	
-	transaction.amount = formatTransactionAmount(transaction.amount);
+	transaction.amount = formatTransactionAmount(info.amount);
 	
 	switch(transaction.type){
 		case "purchase":

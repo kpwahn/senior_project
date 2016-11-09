@@ -12,7 +12,7 @@ exports.createAccount = function(info, callback){
 	new_account.name = info.account_name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.account_type;
-	new_account.balance = info.inital_balance;
+	new_account.balance = formatBalanceAmount(info.inital_balance);
 	new_account.transactions = [];
 	
 	new_account.save(function(err, data) {
@@ -27,6 +27,21 @@ exports.createAccount = function(info, callback){
 				callback({message: info.account_name + " successfully created", data: data});
         });
 	});
+}
+
+function formatBalanceAmount(amount) {
+	console.log("Checking for decimal: " + amount);
+	console.log(amount.indexOf(".") + " " + amount.length);
+	if(amount.indexOf(".") == -1){
+		console.log("Didn't but now does " + amount.concat(".00"));
+		return amount.concat(".00");
+	} else if (amount.indexOf(".") == (amount.length - 2) ){
+		
+		return amount.concat("0");
+	} else { amount.indexOf(".") == -1
+		console.log("Already had it " + amount);
+		return amount;
+	}
 }
 
 exports.getAccounts = function(info, callback){
