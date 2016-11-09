@@ -49,10 +49,6 @@ bankApp.controller('indexController', ['$scope', 'loginService', '$mdSidenav', f
 		$mdSidenav("main").toggle();
 	}
 	
-	$scope.onSwipeLeft = function() {
-		$scope.closeSideNav();
-	}
-	
 }]);
 
 bankApp.factory('loginService', function($http){

@@ -45,12 +45,14 @@
                 </div>
             </md-toolbar>
 			<section layout="row" flex>
-				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="main" ng-swipe-left="onSwipeLeft()">
+				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="main">
 					<md-content layout-padding>
-						<md-button ng-href="#/" ng-click="closeSideNav()" md-no-ink> Accounts </md-button> <br />
-						<md-button ng-href="#createNewMember" ng-click="closeSideNav()" md-no-ink> Become A Member </md-button> <br />
-						<md-button ng-href="#transactions" ng-click="closeSideNav()" md-no-ink> Transactions </md-button> <br />
-						<md-button ng-href="#createAccount" ng-click="closeSideNav()" md-no-ink> New Account </md-button> <br />
+						<div layout="column" >
+							<md-button ng-href="#/" ng-click="closeSideNav()" md-no-ink> Accounts </md-button> <br />
+							<md-button ng-href="#createNewMember" ng-click="closeSideNav()" md-no-ink> Become A Member </md-button> <br />
+							<md-button ng-href="#transactions" ng-click="closeSideNav()" md-no-ink> Transactions </md-button> <br />
+							<md-button ng-href="#createAccount" ng-click="closeSideNav()" md-no-ink> New Account </md-button> <br />
+						</div>
 					</md-content>
 				</md-sidenav>
 			</section>
