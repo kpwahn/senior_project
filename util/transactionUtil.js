@@ -46,7 +46,7 @@ function updateAmount(amount, change, type){
 
 function formatTransactionAmount(amount) {
 	console.log("Checking for decimal: " + amount);
-	console.log(amount.indexOf("."));
+	console.log(amount.indexOf(".") + " " + amount.length);
 	if(amount.indexOf(".") == -1){
 		console.log("Didn't but now does " + amount.concat(".00"));
 		return amount.concat(".00");
