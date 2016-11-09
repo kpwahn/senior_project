@@ -1,13 +1,13 @@
 var Transaction = require('./../database/models/transaction');
 var Account = require('./../database/models/account');
-var util = require('util');
+var Util = require('util');
 
 exports.makeTransaction = function(info, callback){
 	transaction = new Transaction();
 	
 	transaction.date = new Date();
 	transaction.type = info.type;
-	transaction.amount = util.formatAmount(info.amount);
+	transaction.amount = Util.formatAmount(info.amount);
 	
 	switch(transaction.type){
 		case "purchase":
