@@ -30,17 +30,14 @@ exports.createAccount = function(info, callback){
 }
 
 function formatBalanceAmount(amount) {
-	console.log(typeof(amount));
-	console.log("Checking for decimal: " + amount);
-	console.log(amount.indexOf(".") + " " + amount.length);
 	if(amount.indexOf(".") == -1){
-		console.log("Didn't but now does " + amount.concat(".00"));
+		if(amount.indexOf(".") = (amount.length - 1) ){
+			returnamount.concat("00");
+		}
 		return amount.concat(".00");
 	} else if (amount.indexOf(".") == (amount.length - 2) ){
-		
 		return amount.concat("0");
 	} else { amount.indexOf(".") == -1
-		console.log("Already had it " + amount);
 		return amount;
 	}
 }
