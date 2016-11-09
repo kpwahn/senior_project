@@ -60,7 +60,6 @@ function submitTransaction(transaction, info, callback){
 		if (err) {
 			callback({message: "Error at transactionUtil - submitTransaction - line 36", error: err});
 		} else {
-			console.log("Transaction! " + data);
 			// Pushes the transaction onto the account
 			Account.findByIdAndUpdate(info.account, {$push: {"transactions": data}}, {safe: true, new : true}, function(err, account) {
 					if (err)
