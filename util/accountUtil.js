@@ -1,6 +1,6 @@
 var Account = require('./../database/models/account');
 var Member = require('./../database/models/member');
-var util = require('util');
+var util = require('./util');
 
 /*****************************************************************************
 * GET ACCOUNT INFO
