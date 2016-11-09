@@ -1,6 +1,6 @@
 var Transaction = require('./../database/models/transaction');
 var Account = require('./../database/models/account');
-var util = require('util');
+var util = require('./util.js');
 
 exports.makeTransaction = function(info, callback){
 	transaction = new Transaction();
