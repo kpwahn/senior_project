@@ -34,14 +34,8 @@
 						MENU
 					</md-button>
 
-                <span flex></span>
-				<md-button ng-click="logout()" md-no-ink> Logout </md-button> <br />
-<!--
-                    <md-button class="md-raised" ng-href="#createNewMember"> Become A Member </md-button>
-					<md-button class="md-raised" ng-href="#transactions"> Transactions </md-button>
-					<md-button class="md-raised" ng-href="#createAccount"> New Account </md-button>
-					<md-button class="md-raised" ng-click="logout()"> Logout </md-button>
--->
+					<span flex></span>
+					<md-button ng-click="logout()" md-no-ink> Logout </md-button> <br />
                 </div>
             </md-toolbar>
 			<section layout="row" flex>
@@ -49,9 +43,9 @@
 					<md-content layout-padding>
 						<div layout="column" >
 							<md-button ng-href="#/" ng-click="closeSideNav()" md-no-ink> Accounts </md-button> <br />
-							<md-button ng-href="#createNewMember" ng-click="closeSideNav()" md-no-ink> Become A Member </md-button> <br />
 							<md-button ng-href="#transactions" ng-click="closeSideNav()" md-no-ink> Transactions </md-button> <br />
 							<md-button ng-href="#createAccount" ng-click="closeSideNav()" md-no-ink> New Account </md-button> <br />
+							<md-button ng-href="#createNewMember" ng-click="closeSideNav()" md-no-ink> Become A Member </md-button> <br />
 						</div>
 					</md-content>
 				</md-sidenav>

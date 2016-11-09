@@ -8,6 +8,8 @@ exports.makeTransaction = function(info, callback){
 	transaction.type = info.type;
 	transaction.amount = info.amount;
 	
+	transaction.amount = formatTransactionAmount(transaction.amount);
+	
 	switch(transaction.type){
 		case "purchase":
 			transaction.location = info.location;
@@ -39,6 +41,17 @@ function updateAmount(amount, change, type){
 		return parseFloat(amount) - parseFloat(change);
 	} else if(type == "deposit") {
 		return parseFloat(amount) + parseFloat(change);	
+	}
+}
+
+funtion formatTransactionAmount(amount) {
+	console.log("Checking for decimal: " + amount);
+	if(amount.includes("."){
+	   console.log("Already had it " + amount);
+	   return amount;
+	} else {
+	console.log("Didn't but now does " + amount.concat(".00"));
+	   return amount.concat(".00");
 	}
 }
 
