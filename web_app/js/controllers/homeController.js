@@ -6,7 +6,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		return;
 	} else { 
 	
-		$scope.message = "Welcome to the bank!"; 
+		$scope.message = ""; 
 		$scope.accounts = {};
 
 		json = {
@@ -31,6 +31,10 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 						transaction.date = transaction.date.slice(4, 16); 
 					});
 				});
+			
+				if($scope.account == {}){
+					$scope.message = "You currently have no accounts";	
+				}
 					
 			}).
 			error(function (err) {
