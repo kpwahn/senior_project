@@ -44,13 +44,12 @@ function updateAmount(amount, change, type){
 
 function formatTransactionAmount(amount) {
 	if(amount.indexOf(".") == -1){
-		if(amount.indexOf(".") = (amount.length - 1) ){
-			returnamount.concat("00");
-		}
 		return amount.concat(".00");
+	} else if (amount.indexOf(".") == (amount.length - 1) {
+		return amount.concat("00");
 	} else if (amount.indexOf(".") == (amount.length - 2) ){
 		return amount.concat("0");
-	} else { amount.indexOf(".") == -1
+	} else { 
 		return amount;
 	}
 }

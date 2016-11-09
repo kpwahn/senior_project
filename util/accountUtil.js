@@ -30,19 +30,13 @@ exports.createAccount = function(info, callback){
 }
 
 function formatBalanceAmount(amount) {
-	console.log(amount + " " + amount.length + " " + amount.indexOf("."));
-	
 	if(amount.indexOf(".") == -1){
-		console.log(amount + " " + amount.length + " " + amount.indexOf("."));
-		console.log(amount.indexOf(".") == (amount.length - 1));
-		if(amount.indexOf(".") == (amount.length - 1) ){
-			return amount.concat("00");
-		} else {
-			return amount.concat(".00");
-		}
+		return amount.concat(".00");
+	} else if (amount.indexOf(".") == (amount.length - 1) {
+		return amount.concat("00");
 	} else if (amount.indexOf(".") == (amount.length - 2) ){
 		return amount.concat("0");
-	} else { amount.indexOf(".") == -1
+	} else { 
 		return amount;
 	}
 }
