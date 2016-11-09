@@ -30,6 +30,7 @@ exports.createAccount = function(info, callback){
 }
 
 function formatBalanceAmount(amount) {
+	console.log(typeof(amount));
 	console.log("Checking for decimal: " + amount);
 	console.log(amount.indexOf(".") + " " + amount.length);
 	if(amount.indexOf(".") == -1){
