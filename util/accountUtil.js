@@ -1,6 +1,6 @@
 var Account = require('./../database/models/account');
 var Member = require('./../database/models/member');
-var Util = require('util');
+var util = require('./util');
 
 /*****************************************************************************
 * GET ACCOUNT INFO
@@ -13,7 +13,7 @@ exports.createAccount = function(info, callback){
 	new_account.name = info.account_name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.account_type;
-	new_account.balance = Util.formatAmount(info.inital_balance);
+	new_account.balance = util.formatAmount(info.inital_balance);
 	new_account.transactions = [];
 	
 	new_account.save(function(err, data) {
