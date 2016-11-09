@@ -32,7 +32,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 					});
 				});
 			
-				if($scope.account == {}){
+				if($scope.accounts == {}){
 					$scope.message = "You currently have no accounts";	
 				}
 					
