@@ -45,14 +45,15 @@ function updateAmount(amount, change, type){
 }
 
 function formatTransactionAmount(amount) {
-	console.log(typeof(amount));
 	console.log("Checking for decimal: " + amount);
-	if(amount.includes(".")){
-	   console.log("Already had it " + amount);
-	   return amount;
-	} else {
-	console.log("Didn't but now does " + amount.concat(".00"));
-	   return amount.concat(".00");
+	if(amount.indexOf(".") == -1){
+		console.log("Didn't but now does " + amount.concat(".00"));
+		return amount.concat(".00");
+	} else if (amount.indexOf(".") == (amount.length - 1) ){
+		return amount.concat("0");
+	} else { amount.indexOf(".") == -1
+		console.log("Already had it " + amount);
+		return amount;
 	}
 }
 
