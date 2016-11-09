@@ -31,7 +31,7 @@ exports.createAccount = function(info, callback){
 
 function formatBalanceAmount(amount) {
 	if(amount.indexOf(".") == -1){
-		if(amount.indexOf(".") = (amount.length - 1) ){
+		if(amount.indexOf(".") == (amount.length - 1) ){
 			returnamount.concat("00");
 		}
 		return amount.concat(".00");
