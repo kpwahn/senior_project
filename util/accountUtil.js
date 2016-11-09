@@ -33,6 +33,8 @@ function formatBalanceAmount(amount) {
 	console.log(amount + " " + amount.length + " " + amount.indexOf("."));
 	
 	if(amount.indexOf(".") == -1){
+		console.log(amount + " " + amount.length + " " + amount.indexOf("."));
+		console.log(amount.indexOf(".") == (amount.length - 1));
 		if(amount.indexOf(".") == (amount.length - 1) ){
 			return amount.concat("00");
 		} else {
