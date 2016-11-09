@@ -31,9 +31,12 @@ bankApp.config(function($routeProvider) {
     });
 });
 
-bankApp.controller('indexController', ['$scope', 'loginService', function($scope, loginService) {
+bankApp.controller('indexController', ['$scope', 'loginService', '$mdSidenav', function($scope, loginService, $mdSidenav) {
 	
-	//This controller is for the index.html page
+	$scope.toggleSideNav = function() {
+		$mdSidenav("main").toggle();
+	}
+	
 	$scope.logout  = function(){
 		loginService.member.token = "";
 		loginService.username = "";
@@ -41,7 +44,14 @@ bankApp.controller('indexController', ['$scope', 'loginService', function($scope
 		loginService.previousPage = "#";
 		window.location.href = '#login';
 	}
-
+	
+	$scope.closeSideNav = function() {
+		$mdSidenav("main").toggle();
+	}
+	
+	$scope.onSwipeLeft = function() {
+		$scope.closeSideNav();
+	}
 	
 }]);
 

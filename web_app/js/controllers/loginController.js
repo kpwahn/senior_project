@@ -1,6 +1,4 @@
 angular.module('bankApp').controller('loginController', ['$scope', '$http', 'loginService' , function($scope, $http, loginService) {
-	document.getElementById("username").focus();
-	
 	$scope.login = function(){		
 		json = {								
 				"username" : $scope.username,

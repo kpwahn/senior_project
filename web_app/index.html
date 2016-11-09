@@ -27,21 +27,33 @@
         
     </head>
     <body>
-        <div ng-controller="indexController">
+        <div ng-controller="indexController" ng-cloak>
             <md-toolbar layout="row" layout-align="space-between center" layout-sm="column">
                 <div class="md-toolbar-tools">
-					<md-button ng-href="#/" md-no-ink> <span>BANK</span> </md-button>
+					<md-button ng-click="toggleSideNav()" aria-label="menu">
+						MENU
+					</md-button>
 
                 <span flex></span>
-					<div ng-hide="isBecomeAMemberHidden">
-                    	<md-button class="md-raised" ng-href="#createNewMember"> Become A Member </md-button>
-					</div>
+				<md-button ng-click="logout()" md-no-ink> Logout </md-button> <br />
+<!--
+                    <md-button class="md-raised" ng-href="#createNewMember"> Become A Member </md-button>
 					<md-button class="md-raised" ng-href="#transactions"> Transactions </md-button>
 					<md-button class="md-raised" ng-href="#createAccount"> New Account </md-button>
 					<md-button class="md-raised" ng-click="logout()"> Logout </md-button>
+-->
                 </div>
             </md-toolbar>
-
+			<section layout="row" flex>
+				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="main" ng-swipe-left="onSwipeLeft()">
+					<md-content layout-padding>
+						<md-button ng-href="#/" ng-click="closeSideNav()" md-no-ink> Accounts </md-button> <br />
+						<md-button ng-href="#createNewMember" ng-click="closeSideNav()" md-no-ink> Become A Member </md-button> <br />
+						<md-button ng-href="#transactions" ng-click="closeSideNav()" md-no-ink> Transactions </md-button> <br />
+						<md-button ng-href="#createAccount" ng-click="closeSideNav()" md-no-ink> New Account </md-button> <br />
+					</md-content>
+				</md-sidenav>
+			</section>
             <div ng-view></div>
 
         </div>
