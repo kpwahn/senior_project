@@ -50,7 +50,7 @@ function formatTransactionAmount(amount) {
 	if(amount.indexOf(".") == -1){
 		console.log("Didn't but now does " + amount.concat(".00"));
 		return amount.concat(".00");
-	} else if (amount.indexOf(".") == (amount.length - 1) ){
+	} else if (amount.indexOf(".") == (amount.length - 2) ){
 		
 		return amount.concat("0");
 	} else { amount.indexOf(".") == -1
