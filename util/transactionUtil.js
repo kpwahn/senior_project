@@ -1,12 +1,13 @@
 var Transaction = require('./../database/models/transaction');
 var Account = require('./../database/models/account');
+var util = require('./util');
 
 exports.makeTransaction = function(info, callback){
 	transaction = new Transaction();
 	
 	transaction.date = new Date();
 	transaction.type = info.type;
-	transaction.amount = formatTransactionAmount(info.amount);
+	transaction.amount = util.formatAmount(info.amount);
 	
 	switch(transaction.type){
 		case "purchase":
@@ -39,18 +40,6 @@ function updateAmount(amount, change, type){
 		return parseFloat(amount) - parseFloat(change);
 	} else if(type == "deposit") {
 		return parseFloat(amount) + parseFloat(change);	
-	}
-}
-
-function formatTransactionAmount(amount) {
-	if(amount.indexOf(".") == -1){
-		return amount.concat(".00");
-	} else if (amount.indexOf(".") == (amount.length - 1) ) {
-		return amount.concat("00");
-	} else if (amount.indexOf(".") == (amount.length - 2) ){
-		return amount.concat("0");
-	} else { 
-		return amount;
 	}
 }
 

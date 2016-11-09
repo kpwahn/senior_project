@@ -1,5 +1,6 @@
 var Account = require('./../database/models/account');
 var Member = require('./../database/models/member');
+var util = require('./util');
 
 /*****************************************************************************
 * GET ACCOUNT INFO
@@ -12,7 +13,7 @@ exports.createAccount = function(info, callback){
 	new_account.name = info.account_name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.account_type;
-	new_account.balance = formatBalanceAmount(info.inital_balance);
+	new_account.balance = util.formatAmount(info.inital_balance);
 	new_account.transactions = [];
 	
 	new_account.save(function(err, data) {
@@ -27,18 +28,6 @@ exports.createAccount = function(info, callback){
 				callback({message: info.account_name + " successfully created", data: data});
         });
 	});
-}
-
-function formatBalanceAmount(amount) {
-	if(amount.indexOf(".") == -1){
-		return amount.concat(".00");
-	} else if (amount.indexOf(".") == (amount.length - 1) ) {
-		return amount.concat("00");
-	} else if (amount.indexOf(".") == (amount.length - 2) ){
-		return amount.concat("0");
-	} else { 
-		return amount;
-	}
 }
 
 exports.getAccounts = function(info, callback){
