@@ -31,7 +31,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 						transaction.date = transaction.date.slice(4, 16); 
 					});
 				});
-				console.log($scope.accounts.length);
+				
 				if($scope.accounts.length == 0){
 					$scope.message = "You currently have no accounts";	
 				}
