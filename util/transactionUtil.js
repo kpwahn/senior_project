@@ -46,7 +46,7 @@ function updateAmount(amount, change, type){
 
 function formatTransactionAmount(amount) {
 	console.log("Checking for decimal: " + amount);
-	if(amount.includes("."){
+	if(amount.includes(".")){
 	   console.log("Already had it " + amount);
 	   return amount;
 	} else {
