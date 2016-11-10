@@ -39,6 +39,7 @@ exports.getAccounts = function(info, callback){
 				//Mask the account number
 				account.accountNumber = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 
 			});
+			
 			callback(accounts);
 		}
 	})

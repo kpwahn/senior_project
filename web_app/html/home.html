@@ -12,19 +12,25 @@
 		<div>
 			<list>
 				<div ng-repeat="account in accounts">
-					<h2>{{account.name}}</h2>
-					<h3>{{account.accountNumber}}</h3>
-					<p> ${{account.balance}}</p>
-					<table>
-						<tr><th>Amount</th>
-						<th>Type</th>
-						<th>Date</th></tr>
-						<tr ng-repeat="transaction in account.transactions">
-							<td>{{transaction.amount}}</td>
-							<td>{{transaction.type}}</td>
-							<td>{{transaction.date}}</td>
-						</tr>
-					</table>
+					<div layout="column" layout-align="center center" >
+						<h2>{{account.name}}</h2>
+						<p> ${{account.balance}}</p>
+					</div>
+					<div layout="column" ng-cloak>
+						<md-content flex layout-padding style="min-height: 200px">
+							<table>
+								<tr><th>Amount</th>
+								<th>Type</th>
+								<th>Date</th></tr>
+								<tr ng-repeat="transaction in account.transactions">
+									<td>{{transaction.amount}}</td>
+									<td>{{transaction.type}}</td>
+									<td>{{transaction.date}}</td>
+								</tr>
+							</table>
+						</md-content>
+					</div>
+					<br /> <hr />
 				</div>
 			</list>
 		</div>

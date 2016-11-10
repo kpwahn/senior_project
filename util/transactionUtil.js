@@ -54,7 +54,7 @@ function submitTransaction(transaction, info, callback){
 						console.log("Error at transactionUtil - line 51 " + err);
 					
 					// Updates the balances of the account
-					Account.findByIdAndUpdate(account._id, {"balance": updateAmount(account.balance, info.amount, info.type)}, {safe: true, new : true}, function(err, updatedAccount) {
+					Account.findByIdAndUpdate(account._id, {"balance": util.formatAmount(updateAmount(account.balance, info.amount, info.type))}, {safe: true, new : true}, function(err, updatedAccount) {
 						
 						if (err) {
 							console.log("Error at accountUtil - line 51 " + err);
