@@ -16,19 +16,17 @@
 						<h2>{{account.name}}</h2>
 						<p> ${{account.balance}}</p>
 					</div>
-					<div layout="column" ng-cloak>
-						<md-content flex layout-padding layout="column" layout-align="center center" style="min-height: 200px">
-							<table>
-								<tr><th>Amount</th>
-								<th>Type</th>
-								<th>Date</th></tr>
-								<tr ng-repeat="transaction in account.transactions">
-									<td>{{transaction.amount}}</td>
-									<td>{{transaction.type}}</td>
-									<td>{{transaction.date}}</td>
-								</tr>
-							</table>
-						</md-content>
+					<div layout="column" layout-align="center center" ng-cloak>
+						<table>
+							<tr><th>Amount</th>
+							<th>Type</th>
+							<th>Date</th></tr>
+							<tr ng-repeat="transaction in account.transactions">
+								<td>{{transaction.amount}}</td>
+								<td>{{transaction.type}}</td>
+								<td>{{transaction.date}}</td>
+							</tr>
+						</table>
 					</div>
 					<br /> <hr />
 				</div>

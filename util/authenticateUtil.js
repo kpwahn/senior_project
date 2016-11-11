@@ -14,7 +14,7 @@ exports.authenticate = function(info, callback){
 		}
 		
 		if(!member) {
-			callback({message: "Authentication failed. User not found.", data: data});
+			callback({message: "Authentication failed. User not found.", status: 403});
 		} else {
 			member.verifyPassword(info.password, function(err, isMatch) {
 				if(!isMatch) {
