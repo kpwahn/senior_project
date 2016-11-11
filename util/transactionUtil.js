@@ -37,9 +37,9 @@ exports.makeTransaction = function(info, callback){
 
 function updateAmount(amount, change, type){
 	if (type == "purchase" || type == "withdraw") {
-		return parseFloat(amount) - parseFloat(change);
+		return string(parseFloat(amount) - parseFloat(change));
 	} else if(type == "deposit") {
-		return parseFloat(amount) + parseFloat(change);	
+		return string(parseFloat(amount) + parseFloat(change));	
 	}
 }
 
