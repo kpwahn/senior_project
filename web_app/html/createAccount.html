@@ -1,6 +1,6 @@
 <md-content>
 	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-		<form>
+		<form name="newAccountForm" ng-submit="newAccountForm.$valid && createAccount()" novalidate>
 			<md-input-container>
 				<label>Account Name</label>
 				<input ng-model="account_name" required>
@@ -16,7 +16,7 @@
 					<md-option value="savings">Savings</md-option>
 				</md-select>
 			</md-input-container> <br />
-			<md-button type="submit" ng-click="createAccount()" class="md-raised md-primary" > Create Account </md-button>
+			<md-button type="submit" class="md-raised md-primary" > Create Account </md-button>
 		</form>
 	</section>
 </md-content>

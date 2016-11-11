@@ -1,6 +1,6 @@
 <md-content>
 	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-		<form>
+		<form name="createNewMemberForm" ng-submit="createNewMemberForm.$valid && createNewMember()" novalidate>
 			<md-input-container>
 				<label>Full Name</label>
 				<input ng-model="name" required>
@@ -18,7 +18,7 @@
 				<input type="password" ng-model="confirm_password" required>
 			</md-input-container> <br />
 			<div style="text-align: center">
-				<md-button type="submit" ng-click="createNewMember()" class="md-raised md-primary" > Create Member </md-button>
+				<md-button type="submit" class="md-raised md-primary" > Create Member </md-button>
 			</div>
 		</form>
 	</section>

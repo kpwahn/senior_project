@@ -2,7 +2,7 @@
 	<md-tabs md-center-tabs="true" md-swipe-content="true" md-dynamic-height md-border-bottom md-autoselect>
 		<md-tab label="Purchase">
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<form>
+				<form name="purchaseForm" ng-submit="purchaseForm.$valid && purchase()" novalidate>
 					<md-input-container>
 						<label>Amount</label>
 						<input ng-model="purchaseAmount" required>
@@ -17,21 +17,21 @@
 					</md-input-container> <br />
 					<md-input-container>
 						<label>Location</label>
-						<input ng-model="purchaseLocation" required>
+						<input ng-model="purchaseLocation">
 					</md-input-container> <br />
 					<md-input-container>
 						<label>Comment</label>
-						<input  ng-model="purchaseComment" required>
+						<input  ng-model="purchaseComment">
 					</md-input-container> <br />
 					<md-input-container>
-						<md-button type="submit" ng-click="purchase()" class="md-raised md-primary" > Submit Transaction </md-button>
+						<md-button type="submit" class="md-raised md-primary" > Submit Transaction </md-button>
 					</md-input-container>
 				</form>
 			</section>
 		</md-tab>
 		<md-tab label="Transfer">
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<form>
+				<form name="transferForm" ng-submit="transferForm.$valid && transfer()" novalidate>
 					<md-input-container>
 					<label>From Account</label>
 					<md-select ng-model="toTransferAccount" class="md-no-underline" required>
@@ -53,14 +53,14 @@
 					</md-select>
 					</md-input-container> <br />
 					<md-input-container>
-						<md-button type="submit" ng-click="transfer()" class="md-raised md-primary" > Transfer Monies </md-button>
+						<md-button type="submit" class="md-raised md-primary" > Transfer Monies </md-button>
 					</md-input-container>
 				</form>
 			</section>
 		</md-tab>
 		<md-tab label="Deposit">
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<form>
+				<form name="depositForm" ng-submit="depositForm.$valid && deposit()" novalidate>
 					<md-input-container>
 						<label>Amount</label>
 						<input ng-model="depositAmount" required>
@@ -74,14 +74,14 @@
 					</md-select>
 					</md-input-container> <br />
 					<md-input-container>
-						<md-button type="submit" ng-click="deposit()" class="md-raised md-primary" > Deposit </md-button>
+						<md-button type="submit" class="md-raised md-primary" > Deposit </md-button>
 					</md-input-container>	
-				</section>
-			</form>
+				</form>
+			</section>
 		</md-tab>
 		<md-tab label="Withdraw">
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<form>
+				<form name="withdrawForm" ng-submit="withdrawForm.$valid && withdraw()" novalidate>
 					<md-input-container>
 						<label>Amount</label>
 						<input ng-model="withdrawAmount" required>
@@ -95,10 +95,10 @@
 					</md-select>
 					</md-input-container> <br />
 					<md-input-container>
-						<md-button type="submit" ng-click="withdraw()" class="md-raised md-primary" > Withdraw </md-button>
+						<md-button type="submit" class="md-raised md-primary" > Withdraw </md-button>
 					</md-input-container> <br />
-				</section>
-			</form>
+				</form>
+			</section>
 		</md-tab>
 	</md-tabs>
 </md-content>

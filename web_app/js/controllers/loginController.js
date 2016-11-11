@@ -1,5 +1,5 @@
 angular.module('bankApp').controller('loginController', ['$scope', '$http', 'loginService' , function($scope, $http, loginService) {
-	$scope.login = function(){		
+	$scope.login = function(){	
 		json = {								
 				"username" : $scope.username,
 				"password" : $scope.password
@@ -7,10 +7,10 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 		
 		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
-			console.log(data);
 			if (data.status == 403){
-				console.log("Here");
-				alert("invalid username or password. Please try again");	
+				alert("Invalid username or password. Please try again");
+				$scope.username = "";
+				$scope.password = "";
 			} else if (data.member_data.token){
 				
 				loginService.member.token = data.member_data.token;

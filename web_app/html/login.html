@@ -1,17 +1,17 @@
 <md-content>
     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-		<form>
+		<form name="loginForm" ng-submit="loginForm.$valid && login()" novalidate>
 			<br />
 			<md-input-container>
-				<label>username</label>
+				<label>Username</label>
 				<input id="username" ng-model="username" required>
 			</md-input-container> <br />
 			<md-input-container>
-				<label>password</label>
+				<label>Password</label>
 				<input type="password" ng-model="password" required>
 			</md-input-container> <br />
 			<div style="text-align: center">
-				<md-button type="submit" ng-click="login()" class="md-raised md-primary" > Login </md-button>
+				<md-button type="submit" class="md-raised md-primary" > Login </md-button>
 			</div>
 		</form>
 	</section>
