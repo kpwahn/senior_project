@@ -8,13 +8,13 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
 			if (data.status == 403){
-				alert("invalid username or password. Please try again);	
+				alert("invalid username or password. Please try again");	
 			}
 			if(data.data.token){
 				
-				loginService.member.token = data.data.token;
+				loginService.member.token = data.member_data.token;
 				loginService.username = json.username;
-				loginService.memberId = data.data.memberId;
+				loginService.memberId = data.member_data.memberId;
 
 				if(loginService.previousPage != "#login"){
 					window.location.href = loginService.previousPage;
