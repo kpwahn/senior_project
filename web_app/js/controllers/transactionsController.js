@@ -29,7 +29,6 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 			})
 	
 	$scope.purchase = function(){
-		console.log("0 " + typeof($scope.purchaseAmount));
 		json = {
 			"type": "purchase",
 			"account" : $scope.purchaseAccount,
@@ -38,7 +37,6 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 			"comment": $scope.purchaseComment
 		}
 		
-		console.log("1 " + typeof(json.amount));
 		makeRequest(json);
 	}
 	
