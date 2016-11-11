@@ -86,7 +86,6 @@ function isAuthenticated(info, callback){
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
 		authUtil.authenticate(info, function(result){
-			result.status = 200;
 			res.send(result);
 		});
 	});
