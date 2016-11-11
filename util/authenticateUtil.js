@@ -6,8 +6,7 @@ exports.authenticate = function(info, callback){
 	
 	Member.findOne({username : info.username}, function(err, member) {
 		if(err)
-			callback({message: "Error at authenticateUtil - authenticate - line 6", error: err});
-		
+			callback({status: 500, message: "Error at authenticateUtil - authenticate - line 6", error: err});
 		data = {
 			token: "",
 			member_Id: ""
@@ -18,7 +17,7 @@ exports.authenticate = function(info, callback){
 		} else {
 			member.verifyPassword(info.password, function(err, isMatch) {
 				if(!isMatch) {
-					callback({message: "Authentication failed. Invalid Password.", data: data});
+					callback({status: 403, message: "Authentication failed. Invalid Password.", member_data: data});
 				} else {	
 					// create a token
 					var token = jwt.sign(member, config.secret, {
@@ -29,7 +28,7 @@ exports.authenticate = function(info, callback){
 						token: token,
 						memberId: member._id
 					}
-					callback({message: "Logged in!", data: data});
+					callback({status: 200, message: "Logged in!", member_data: data});
 				}
 			});
 		} 
