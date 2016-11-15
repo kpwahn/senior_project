@@ -13,7 +13,6 @@ var https = require('https');
 var express = require('express')
 var mongoose = require('mongoose');
 var jwt    = require('jsonwebtoken');
-var RateLimit = require('express-rate-limit');
 /*****************************************************************************
 * FILES
 ******************************************************************************/
