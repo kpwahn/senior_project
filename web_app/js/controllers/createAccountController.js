@@ -7,13 +7,11 @@ angular.module('bankApp').controller('createAccountController', ['$scope', '$htt
 	
 	$scope.account_name = "";
 	$scope.account_type = "";
-	$scope.intial_balance = "";
 	
 	$scope.createAccount = function(){
 		json = {
 			"account_name" : $scope.account_name,
 			"account_type" : $scope.account_type,
-			"inital_balance" : $scope.intial_balance,
 			"member_id" : loginService.member_id,
 			"token" : loginService.member.token
 		}

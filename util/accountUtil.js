@@ -7,23 +7,29 @@ var util = require('./util');
 ******************************************************************************/
 exports.createAccount = function(info, callback){
 	
+	
+	console.log("Creating account " + JSON.stringify(info));
 	var new_account = new Account();
 	
 	new_account.member_id = info.member_id;
 	new_account.name = info.account_name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.account_type;
-	new_account.balance = util.formatAmount(info.inital_balance);
+	new_account.balance = 0.00;
 	new_account.transactions = [];
 	
 	new_account.save(function(err, data) {
 		if (err)
 			callback({message: "Error at accountUtil - createAccount - line 19", error: err});
 	
+		console.log("saved the account, now pushing to member");
+		
 		// Push new account onto the appropriate member's account array
 		Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err) {
             	if (err)
 					console.log("Error at accountUtil - line 24 " + err);
+			
+				console.log("pushed to " + data);
 				//add our new id into the member array of accounts
 				callback({message: info.account_name + " successfully created", data: data});
         });
