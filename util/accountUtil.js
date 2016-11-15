@@ -39,7 +39,7 @@ exports.createAccount = function(info, callback){
 exports.getAccounts = function(info, callback){
 	Account.find({"member_id" : info.member_id}, function(err, accounts) {
 		if(err){
-		
+			console.log("Error at accountUtil - line 42 " + err);
 		}else {
 			accounts.forEach(function(account) {
 				//Mask the account number
