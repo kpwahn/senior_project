@@ -4,15 +4,15 @@ exports.help = function(callback) {
 		base_URL : "https://kpwahnschaffe.com/",
 		last_Updated : "November 14, 2016",
 		endpoints : {
-			"/" : {
-				"Method" : "GET",
-				"requires_authentication" : false,
-				"description" : "Returns the default static website"
-			},
 			"http://kpwahnschaffe.com/*" : {
 				"Method" : "GET",
 				"requires_authentication" : false,
 				"description" : "(http) Returns the default status website, no matter the route. Cannot access API with http"
+			},
+			"/" : {
+				"Method" : "GET",
+				"requires_authentication" : false,
+				"description" : "Returns the default static website"
 			},
 			"/help" : {
 				"Method" : "GET",
