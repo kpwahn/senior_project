@@ -6,9 +6,6 @@ var util = require('./util');
 * GET ACCOUNT INFO
 ******************************************************************************/
 exports.createAccount = function(info, callback){
-	
-	
-	console.log("Creating account " + JSON.stringify(info));
 	var new_account = new Account();
 	
 	new_account.member_id = info.member_id;
@@ -21,8 +18,6 @@ exports.createAccount = function(info, callback){
 	new_account.save(function(err, data) {
 		if (err)
 			callback({message: "Error at accountUtil - createAccount - line 19", error: err});
-	
-		console.log("saved the account, now pushing to member");
 		
 		// Push new account onto the appropriate member's account array
 		Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
@@ -37,7 +32,6 @@ exports.createAccount = function(info, callback){
 }
 
 exports.getAccounts = function(info, callback){
-	console.log("getting accounts: " + JSON.stringify(info));
 	Account.find({"member_id" : info.member_id}, function(err, accounts) {
 		if(err){
 			console.log("Error at accountUtil - line 42 " + err);
