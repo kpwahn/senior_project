@@ -37,6 +37,7 @@ exports.createAccount = function(info, callback){
 }
 
 exports.getAccounts = function(info, callback){
+	console.log("getting accounts: " + JSON.stringify(info));
 	Account.find({"member_id" : info.member_id}, function(err, accounts) {
 		if(err){
 			console.log("Error at accountUtil - line 42 " + err);
