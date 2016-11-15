@@ -13,6 +13,7 @@ var https = require('https');
 var express = require('express')
 var mongoose = require('mongoose');
 var jwt    = require('jsonwebtoken');
+var RateLimit = require('express-rate-limit');
 /*****************************************************************************
 * FILES
 ******************************************************************************/
@@ -20,6 +21,7 @@ var memberUtil = require('./util/memberUtil')
 var accountUtil = require('./util/accountUtil')
 var transactionUtil = require('./util/transactionUtil')
 var authUtil = require('./util/authenticateUtil');
+var helpUtil = require('./util/helpUtil');
 var config = require('./config');
 
 var app = express();
@@ -34,6 +36,9 @@ app.use(function(req, res, next){
     next();
 });
 
+/*****************************************************************************
+* Serve up the webpage statically
+******************************************************************************/
 app.use(express.static(__dirname + '/web_app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
@@ -56,33 +61,34 @@ function getRequestInfo(req, callback){
     });
 }
 
+/*****************************************************************************
+* Authenicate users. All endpoints go through here to ensure user has access to
+* the endpoint
+******************************************************************************/
 function isAuthenticated(info, callback){
-	// check header or url parameters or post parameters for token
 	if (info.token) {
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
-
-	  if (err) {
-		return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
-	  } else {
-		callback(info);
-	  }
-	});
-
+			if (err) {
+			return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
+			} else {
+			callback(info);
+			}
+		});
 	} else {
-	  //No token
-	  callback({ 
+		//No token found
+		callback({ 
 		  status: 403,
 		  success: false, 
 		  message: 'No token provided.' 
-	  });
-
+		});
 	}
 }
 
 /*****************************************************************************
 * ENDPOINTS
 ******************************************************************************/
+// Hit this endpoint in order to authenicate users
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
 		authUtil.authenticate(info, function(result){
@@ -91,6 +97,7 @@ app.post('/authenticate', function(req, res) {
 	});
 });
 
+// This endpoint is not protected using isAuthenticated
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		memberUtil.createNewMember(info, function(result){
@@ -147,9 +154,15 @@ app.post('/makeTransaction', function(req, res) {
 });
 
 app.get('/index', function(req, res) {
-		console.log(__dirname + "/web_app/index.html");
-		res.sendfile('/web_app/index.html', { root: __dirname });
-    });
+	console.log(__dirname + "/web_app/index.html");
+	res.sendfile('/web_app/index.html', { root: __dirname });
+});
+
+app.get('/help', function(req, res) {
+	helpUtil.help(function(result) {
+		res.send(result);	
+	});
+});
 
 var port = 443;
 
