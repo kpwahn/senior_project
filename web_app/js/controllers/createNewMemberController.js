@@ -18,6 +18,7 @@ angular.module('bankApp').controller('createNewMemberController', ['$scope', '$h
 			}
 			$http.post(loginService.baseURL + "/createNewMember/", json)
 			.success(function (data) {
+				console.log(data);
 				alert(JSON.stringify(data.message));
 				window.location.href = "#";
 			}).
