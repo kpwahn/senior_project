@@ -9,7 +9,7 @@ exports.authenticate = function(info, callback){
 			callback({status: 500, message: "Error at authenticateUtil - authenticate - line 6", error: err});
 		data = {
 			token: "",
-			member_Id: ""
+			member_id: ""
 		}
 		
 		if(!member) {
@@ -26,7 +26,7 @@ exports.authenticate = function(info, callback){
 					
 					data = {
 						token: token,
-						memberId: member._id
+						member_id: member._id
 					}
 					callback({status: 200, message: "Logged in!", member_data: data});
 				}
