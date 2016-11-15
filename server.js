@@ -159,7 +159,6 @@ app.get('/index', function(req, res) {
 
 app.get('/help', function(req, res) {
 	helpUtil.help(function(result) {
-		res.type('json');
 		res.send(result);	
 	});
 });
