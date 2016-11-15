@@ -24,7 +24,6 @@ exports.createAccount = function(info, callback){
             	if (err)
 					console.log("Error at accountUtil - line 24 " + err);
 			
-				console.log("pushed to " + data);
 				//add our new id into the member array of accounts
 				callback({message: info.account_name + " successfully created", data: data});
         });
