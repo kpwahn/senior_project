@@ -9,7 +9,7 @@ exports.createAccount = function(info, callback){
 	
 	var new_account = new Account();
 	
-	new_account.memberId = info.memberId;
+	new_account.member_id = info.member_id;
 	new_account.name = info.account_name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.account_type;
@@ -21,7 +21,7 @@ exports.createAccount = function(info, callback){
 			callback({message: "Error at accountUtil - createAccount - line 19", error: err});
 	
 		// Push new account onto the appropriate member's account array
-		Member.findByIdAndUpdate(info.memberId, {$push: {"accounts": data}}, {safe: true, new : true}, function(err) {
+		Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err) {
             	if (err)
 					console.log("Error at accountUtil - line 24 " + err);
 				//add our new id into the member array of accounts
@@ -31,7 +31,7 @@ exports.createAccount = function(info, callback){
 }
 
 exports.getAccounts = function(info, callback){
-	Account.find({"memberId" : info.memberId}, function(err, accounts) {
+	Account.find({"member_id" : info.member_id}, function(err, accounts) {
 		if(err){
 		
 		}else {

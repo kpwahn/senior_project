@@ -10,7 +10,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		$scope.accounts = {};
 
 		json = {
-			"memberId" : loginService.memberId,
+			"member_id" : loginService.memberId,
 			"token" : loginService.member.token
 		}
 		

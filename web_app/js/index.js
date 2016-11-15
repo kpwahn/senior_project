@@ -40,7 +40,7 @@ bankApp.controller('indexController', ['$scope', 'loginService', '$mdSidenav', f
 	$scope.logout  = function(){
 		loginService.member.token = "";
 		loginService.username = "";
-		loginService.memberId = "";
+		loginService.member_id = "";
 		loginService.previousPage = "#";
 		window.location.href = '#login';
 	}
@@ -62,7 +62,7 @@ bankApp.factory('loginService', function($http){
 	
 	factory.member = {
 		username: "",
-		memberId: "",
+		member_id: "",
 		token: ""
 	}
 

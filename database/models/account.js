@@ -4,7 +4,7 @@ var account_types = 'checking savings'.split(' ')
 
 // Define our schema
 var accountSchema   = new mongoose.Schema({
-		"memberId" : {type: String, required: true},
+		"member_id" : {type: String, required: true},
 		"accountNumber" : {type: String, required: true},
     	"name" : {type: String, required: true},
 		"type": {type: String, enum: account_types, required: true},

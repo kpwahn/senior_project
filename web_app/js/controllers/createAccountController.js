@@ -14,7 +14,7 @@ angular.module('bankApp').controller('createAccountController', ['$scope', '$htt
 			"account_name" : $scope.account_name,
 			"account_type" : $scope.account_type,
 			"inital_balance" : $scope.intial_balance,
-			"memberId" : loginService.memberId,
+			"member_id" : loginService.member_id,
 			"token" : loginService.member.token
 		}
 		

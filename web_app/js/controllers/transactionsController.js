@@ -9,7 +9,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 	}    	
 
 	json = {
-		"memberId" : loginService.memberId,
+		"member_id" : loginService.member_id,
 		"token" : loginService.member.token
 	}
 	
@@ -69,7 +69,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 	}
 	
 	function makeRequest(json, endpoint){
-		json["memberId"] =  loginService.memberId;
+		json["member_id"] =  loginService.member_id;
 		json["token"] = loginService.member.token;
 		
 		$http.post(loginService.baseURL + "/makeTransaction/", json)

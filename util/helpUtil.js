@@ -5,39 +5,60 @@ exports.help = function(callback) {
 		last_Updated : "November 14, 2016",
 		endpoints : {
 			"http://kpwahnschaffe.com/*" : {
-				"Method" : "GET",
+				"method" : "GET",
 				"requires_authentication" : false,
 				"description" : "(http) Returns the default status website, no matter the route. Cannot access API with http"
 			},
 			"/" : {
-				"Method" : "GET",
+				"method" : "GET",
 				"requires_authentication" : false,
 				"description" : "Returns the default static website"
 			},
 			"/help" : {
-				"Method" : "GET",
+				"method" : "GET",
 				"requires_authentication" : false,
 				"description" : "Returns JSON explaining the API"
 			},
 			"/createNewMember" : {
-				"Method" : "POST",
-				"requires_authentication" : false
+				"method" : "POST",
+				"requires_authentication" : false,
+				"description" : ""
 			},
 			"/makeTransaction" : {
-				"Method" : "POST",
-				"requires_authentication" : true
+				"method" : "POST",
+				"requires_authentication" : true,
+				"description" : ""
 			},
 			"/getAccounts" : {
-				"Method" : "POST",
-				"requires_authentication" : true
+				"method" : "POST",
+				"requires_authentication" : true,
+				"description" : ""
+				
 			},
 			"/createAccount" : {
-				"Method" : "POST",
-				"requires_authentication" : true
+				"method" : "POST",
+				"requires_authentication" : true,
+				"description" : "Enpoint used to create accounts for existing members",
+				"keys" : [{key : "account_name",
+						   "optional" : false}, 
+						  { "key" : "account_type", 
+						   "optional" : false}, 
+						  { "key" : "inital_balance", 
+						   "optional" : false}, 
+						  { "key" : "memberId", 
+						   "optional" : false}, 
+						  { "key" : "token", 
+						   "optional" : false}] 
 			},
 			"/authenticate" : {
-				"Method" : "POST",
-				"requires_authentication" : true
+				"method" : "POST",
+				"requires_authentication" : true,
+				"description" : "Enpoint used to authenticate users",
+				"keys" : [{key : "username", 
+						   "optional" : false}, 
+						  { "key" : "password", 
+						   "optional" : false}]
+				
 			}
 		}
 	}

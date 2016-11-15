@@ -15,7 +15,7 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 				
 				loginService.member.token = data.member_data.token;
 				loginService.username = json.username;
-				loginService.memberId = data.member_data.memberId;
+				loginService.member_id = data.member_data.member_id;
 
 				if(loginService.previousPage != "#login"){
 					window.location.href = loginService.previousPage;
