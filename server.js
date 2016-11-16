@@ -59,9 +59,9 @@ function getRequestInfo(req, callback){
 		try {
 			info = JSON.parse(info);
 		} catch(error) {
-			var text = error;
-			console.log(text);
-			callback({status: 400, message: "Malformed JSON", data: text});	
+			var json = {status: 400, message: "Malformed JSON", data: error}
+			console.log(json);
+			callback(json);	
 		}
     });
 }
