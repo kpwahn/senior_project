@@ -69,13 +69,12 @@ function isAuthenticated(info, callback){
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
 			if (err) {
-			return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
+				return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
 			} else {
-			callback(info);
+				callback(info);
 			}
 		});
 	} else {
-		//No token found
 		callback({ 
 		  status: 403,
 		  success: false, 

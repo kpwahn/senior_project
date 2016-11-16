@@ -3,36 +3,48 @@ var Account = require('./../database/models/account');
 var util = require('./util');
 
 exports.makeTransaction = function(info, callback){
-	transaction = new Transaction();
+	if(!info.type && !info.amount){
+		callback({status: 200, 
+				  message: "Incorrect post data", 
+				  "keys" : [{key : "type",
+						  	"optional" : false}, 
+						  	{ "key" : "amount", 
+							 "optional" : false}]
+				 });
+		return;
+	} else {
 	
-	transaction.date = new Date();
-	transaction.type = info.type;
-	transaction.amount = util.formatAmount(info.amount);
-	
-	switch(transaction.type){
-		case "purchase":
-			transaction.location = info.location;
-			transaction.comment = info.comment;
-			submitTransaction(transaction, info, callback);
-		break;
-		case "transfer":
-			// A transfer is just a withdraw and a deposit
-			info.type = "withdraw";
-			info.account = info.fromAccount;
-			submitTransaction(transaction, info, function(){
-				info.type = "deposit";
-				info.account = info.toAccount
+		transaction = new Transaction();
+
+		transaction.date = new Date();
+		transaction.type = info.type;
+		transaction.amount = util.formatAmount(info.amount);
+
+		switch(transaction.type){
+			case "purchase":
+				transaction.location = info.location;
+				transaction.comment = info.comment;
 				submitTransaction(transaction, info, callback);
-			});
-			
-		break;
-		case "deposit":
-			submitTransaction(transaction, info, callback);
-		break;
-		case "withdraw":
-			submitTransaction(transaction, info, callback);
-		break;
-	}	
+			break;
+			case "transfer":
+				// A transfer is just a withdraw and a deposit
+				info.type = "withdraw";
+				info.account = info.fromAccount;
+				submitTransaction(transaction, info, function(){
+					info.type = "deposit";
+					info.account = info.toAccount
+					submitTransaction(transaction, info, callback);
+				});
+
+			break;
+			case "deposit":
+				submitTransaction(transaction, info, callback);
+			break;
+			case "withdraw":
+				submitTransaction(transaction, info, callback);
+			break;
+		}	
+	}
 }
 
 function updateAmount(amount, change, type){

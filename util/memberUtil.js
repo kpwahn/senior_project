@@ -3,8 +3,7 @@ var Member = require('./../database/models/member');
 /*****************************************************************************
 * CREATE ACCOUNT
 ******************************************************************************/
-exports.createNewMember = function(info, callback){
-	
+exports.createNewMember = function(info, callback){	
 	if(!info.member_name && !info.username && !info.password) {
 		callback({status: 200, 
 				  message: "Incorrect post data", 
@@ -22,7 +21,7 @@ exports.createNewMember = function(info, callback){
 		// Makes sure there is not already another member with the same username
 		Member.find({"member_name" : info.member_name, "username" : info.username}, function(err, member) {
 			if (err){
-				callback({message: "Error at memberUtil - createNewMember - line 11", error: err});
+				callback({message: "Error at memberUtil - createNewMember - line 25", error: err});
 			}else {
 				var new_member = new Member();
 
@@ -36,7 +35,7 @@ exports.createNewMember = function(info, callback){
 				//Call save on the Account model which is a Mongoose function that will save the model to the MongoDB database
 				new_member.save(function(err, data) {
 				if (err) {
-					callback({message: "Error at memberUtil - createNewMember - line 29", error: err});
+					callback({message: "Error at memberUtil - createNewMember - line 39", error: err});
 				}else {
 					//TODO passback account numbers and such, NOT PASSWORD
 					callback({status: 200, message: info.member_name + " is now a new member!", data: data});

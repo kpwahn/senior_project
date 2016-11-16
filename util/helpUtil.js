@@ -7,7 +7,7 @@ exports.help = function(callback) {
 			"http://kpwahnschaffe.com/*" : {
 				"method" : "GET",
 				"requires_authentication" : false,
-				"description" : "(http) Returns the default status website, no matter the route. Cannot access API with http"
+				"description" : "(http) Returns the default static website, no matter the route. Cannot access API with http"
 			},
 			"/" : {
 				"method" : "GET",
