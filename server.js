@@ -48,20 +48,21 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 *   Send all requests through here
 ***********************************************/
 function getRequestInfo(req, callback){
-	console.log("Here ");
-    var info = "";
+    
+	var info = "";
+	
     req.on("data",  function(data){
-		console.log("There ");
         info += data;
     });
 	
     req.on("end", function(){
-		console.log("Anywhere ");
-		console.log("Info " + info);
-		info = JSON.parse(info);
-		console.log("But seriously ");
-        callback(info);
-		console.log("Done ");
+		try {
+			info = JSON.parse(info);
+			callback(info);
+		} catch(e) {
+			callback(e);	
+		}
+        
     });
 }
 
