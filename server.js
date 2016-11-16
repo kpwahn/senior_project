@@ -61,6 +61,7 @@ function getRequestInfo(req, callback){
 		} catch(error) {
 			callback({status: 400, message: "Malformed JSON"});	
 		}
+		callback(info);
     });
 }
 
