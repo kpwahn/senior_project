@@ -7,7 +7,7 @@ exports.createNewMember = function(info, callback){
 	// Makes sure there is not already an account assoicated with the member's name or username
 	Member.find({"member_name" : info.member_name, "username" : info.username}, function(err, member) {
 		if (err){
-			callback({message: "Error at memberUtil - createNewMember - line 25", error: err});
+			callback(err);
 		}else {
 			var new_member = new Member();
 
