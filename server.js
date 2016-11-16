@@ -58,10 +58,11 @@ function getRequestInfo(req, callback){
     req.on("end", function(){
 		try {
 			info = JSON.parse(info);
-			callback(info);
 		} catch(e) {
-			callback(e);	
+			callback(e);
+			return;
 		}
+		callback(info);
         
     });
 }
