@@ -77,7 +77,6 @@ exports.help = function(callback) {
 						   "optional" : false}, 
 						  { "key" : "password", 
 						   "optional" : false}]
-				
 			}
 		}
 	}

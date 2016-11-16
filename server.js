@@ -48,7 +48,7 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 *   Send all requests through here
 ***********************************************/
 function getRequestInfo(req, callback){
-
+	console.log("Here ");
     var info = "";
     req.on("data",  function(data){
         info += data;
