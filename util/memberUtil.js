@@ -5,7 +5,7 @@ var Member = require('./../database/models/member');
 ******************************************************************************/
 exports.createNewMember = function(info, callback){
 	
-	if(info.member_name && info.username && info.password) {
+	if(!info.member_name && !info.username && !info.password) {
 		callback({status: 200, 
 				  message: "Incorrect post data", 
 				  "keys" : [{key : "member_name",
