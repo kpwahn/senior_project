@@ -59,11 +59,9 @@ function getRequestInfo(req, callback){
 		try {
 			info = JSON.parse(info);
 		} catch(e) {
-			callback(e);
-			return;
+			console.log(e);
+			callback(e);	
 		}
-		callback(info);
-        
     });
 }
 
