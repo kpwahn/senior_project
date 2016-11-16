@@ -24,7 +24,7 @@ exports.createNewMember = function(info, callback){
 				callback(err);
 			}else {
 				//TODO passback account numbers and such, NOT PASSWORD
-				callback({status: 200, message: info.member_name + " is now a new member!", data: data});
+				callback({status: 200, data: data});
 			}
 			});
 		}

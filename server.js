@@ -69,7 +69,7 @@ function isAuthenticated(info, callback){
 		// verifies secret and checks exp
 		jwt.verify(info.token, config.secret, function(err, decoded) {
 			if (err) {
-				return callback({ status: 403, success: false, message: 'Failed to authenticate token.' });    
+				return callback({ status: 403, success: false, message: 'Failed to authenticate token.', data: decoded });    
 			} else {
 				callback(info);
 			}
@@ -108,14 +108,9 @@ app.post('/createNewMember', function(req, res) {
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
 		isAuthenticated(info, function(info){
-			if(info.status == 403){
-				res.send(info);
-			}else {
-				accountUtil.createAccount(info, function(result){
-					result.status = 200;
-					res.send(result);
-				});
-			}
+			accountUtil.createAccount(info, function(result) {
+				res.send(result);
+			});
 		});
 	});
 });
@@ -123,14 +118,9 @@ app.post('/createAccount', function(req, res) {
 app.post('/getAccounts', function(req, res) {
 	getRequestInfo(req, function(info){
 		isAuthenticated(info, function(info){
-			if(info.status == 403){
-				res.send(info);
-			}else {
-				accountUtil.getAccounts(info, function(result){
-					result.status = 200;
-					res.send(result);
-				});
-			}
+			accountUtil.getAccounts(info, function(result) {
+				res.send(result);
+			});
 		});
 	});
 });
@@ -138,14 +128,9 @@ app.post('/getAccounts', function(req, res) {
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
 		isAuthenticated(info, function(info){
-			if(info.status == 403){
-				res.send(info);
-			}else {
-				transactionUtil.makeTransaction(info, function(result){
-					result.status = 200;
-					res.send(result);
-				})
-			}
+			transactionUtil.makeTransaction(info, function(result) {
+				res.send(result);
+			});
 		});
 	});
 });
