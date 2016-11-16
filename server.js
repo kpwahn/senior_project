@@ -60,7 +60,7 @@ function getRequestInfo(req, callback){
 			info = JSON.parse(info);
 		} catch(e) {
 			console.log(e);
-			callback(e);	
+			callback({status: 400, message: "Malformed JSON", data: e});	
 		}
     });
 }
@@ -94,49 +94,69 @@ function isAuthenticated(info, callback){
 // Hit this endpoint in order to authenicate users
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
-		authUtil.authenticate(info, function(result){
-			res.send(result);
-		});
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			authUtil.authenticate(info, function(result){
+				res.send(result);
+			});
+		}
 	});
 });
 
 // This endpoint is not protected using isAuthenticated
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
-		memberUtil.createNewMember(info, function(result){
-			res.send(result);
-		});
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			memberUtil.createNewMember(info, function(result){
+				res.send(result);
+			});
+		}
 	});
 });
 
 // In order to create an account you must have the members _id value (maybe implement a unique member number?
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
-		isAuthenticated(info, function(info){
-			accountUtil.createAccount(info, function(result) {
-				res.send(result);
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			isAuthenticated(info, function(info){
+				accountUtil.createAccount(info, function(result) {
+					res.send(result);
+				});
 			});
-		});
+		}
 	});
 });
 
 app.post('/getAccounts', function(req, res) {
 	getRequestInfo(req, function(info){
-		isAuthenticated(info, function(info){
-			accountUtil.getAccounts(info, function(result) {
-				res.send(result);
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			isAuthenticated(info, function(info){
+				accountUtil.getAccounts(info, function(result) {
+					res.send(result);
+				});
 			});
-		});
+		}
 	});
 });
 
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
-		isAuthenticated(info, function(info){
-			transactionUtil.makeTransaction(info, function(result) {
-				res.send(result);
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			isAuthenticated(info, function(info){
+				transactionUtil.makeTransaction(info, function(result) {
+					res.send(result);
+				});
 			});
-		});
+		}
 	});
 });
 
