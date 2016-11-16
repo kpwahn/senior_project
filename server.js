@@ -57,6 +57,7 @@ function getRequestInfo(req, callback){
 	
     req.on("end", function(){
 		console.log("Anywhere ");
+		console.log("Info " + info);
 		info = JSON.parse(info);
 		console.log("But seriously ");
         callback(info);
