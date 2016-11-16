@@ -51,10 +51,12 @@ function getRequestInfo(req, callback){
 	console.log("Here ");
     var info = "";
     req.on("data",  function(data){
+		console.log("There ");
         info += data;
     });
 	
     req.on("end", function(){
+		console.log("Anywhere ");
 		info = JSON.parse(info);
         callback(info);
     });
