@@ -22,32 +22,51 @@ exports.help = function(callback) {
 			"/createNewMember" : {
 				"method" : "POST",
 				"requires_authentication" : false,
-				"description" : ""
+				"description" : "",
+				"keys" : [{key : "member_name",
+						   "optional" : false}, 
+						  { "key" : "username", 
+						   "optional" : false}, 
+						  { "key" : "password", 
+						   "optional" : false}] 
 			},
 			"/makeTransaction" : {
 				"method" : "POST",
 				"requires_authentication" : true,
-				"description" : ""
+				"description" : "Endpoint used to make transactions",
+				"keys" : [{key : "member_id",
+						   "optional" : false}, 
+						  { "key" : "token", 
+						   "optional" : false}, 
+						  { "key" : "type",
+						   "possible_values" : ["purchase", "transfer", "deposit", "withdraw"],
+						   "optional" : false}, 
+						  { "key" : "amount", 
+						   "optional" : false}] 
+				
+				//Add in other keys for specific types, or add that once they hit this endpoint?
 			},
 			"/getAccounts" : {
 				"method" : "POST",
 				"requires_authentication" : true,
-				"description" : ""
-				
+				"description" : "Endpoint returns all the accounts for the provided member",
+				"keys" : [{key : "member_id",
+						   "optional" : false}]
 			},
 			"/createAccount" : {
 				"method" : "POST",
 				"requires_authentication" : true,
 				"description" : "Enpoint used to create accounts for existing members",
-				"keys" : [{key : "account_name",
-						   "optional" : false}, 
-						  { "key" : "account_type", 
-						   "optional" : false}, 
-						  { "key" : "inital_balance", 
-						   "optional" : false}, 
-						  { "key" : "memberId", 
+				"keys" : [{ "key" : "member_id", 
 						   "optional" : false}, 
 						  { "key" : "token", 
+						   "optional" : false},
+						  {key : "account_name",
+						   "optional" : false}, 
+						  { "key" : "account_type",
+						   "possible_values" : ["savings", "checking"],
+						   "optional" : false}, 
+						  { "key" : "inital_balance", 
 						   "optional" : false}] 
 			},
 			"/authenticate" : {

@@ -100,7 +100,6 @@ app.post('/authenticate', function(req, res) {
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		memberUtil.createNewMember(info, function(result){
-			result.status = 200;
 			res.send(result);
 		});
 	});
