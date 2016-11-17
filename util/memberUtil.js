@@ -24,9 +24,8 @@ exports.createNewMember = function(info, callback){
 				if (err) {
 					callback(err);
 				}else {
-					//TODO passback account numbers and such, NOT PASSWORD
-					console.log("Here " + JSON.stringify(data));
 					data.password = info.password;
+					// Log in the new user
 					authUtil.authenticate(data, function(result){
 						callback(result);
 					});

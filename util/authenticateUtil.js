@@ -4,6 +4,9 @@ var Member = require('./../database/models/member');
 
 exports.authenticate = function(info, callback){
 	Member.findOne({username : info.username}, function(err, member) {
+		
+		console.log(member);
+		
 		if(err) {
 			callback(err);
 		} else {
