@@ -7,15 +7,16 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 		
 		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
-			if (data.status == 403){
+			console.log(data);
+			if (data.status == 401){
 				alert("Invalid username or password. Please try again");
 				$scope.username = "";
 				$scope.password = "";
-			} else if (data.member_data.token){
+			} else if (data.data.token){
 				
-				loginService.member.token = data.member_data.token;
+				loginService.member.token = data.data.token;
 				loginService.username = json.username;
-				loginService.member_id = data.member_data.member_id;
+				loginService.member_id = data.data.member_id;
 
 				if(loginService.previousPage != "#login"){
 					window.location.href = loginService.previousPage;

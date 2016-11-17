@@ -22,7 +22,7 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 					window.location.href = "#/login";
 					return;
 				}
-				$scope.accounts = data;
+				$scope.accounts = data.data;
 			}).
 			error(function (err) {
 				console.log("Error with the request " + err);

@@ -1,34 +1,5 @@
 <md-content class="md-padding">
 	<md-tabs md-center-tabs="true" md-swipe-content="true" md-dynamic-height md-border-bottom md-autoselect>
-		<md-tab label="Purchase">
-			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<form name="purchaseForm" ng-submit="purchaseForm.$valid && purchase()" novalidate>
-					<md-input-container>
-						<label>Amount</label>
-						<input ng-model="purchaseAmount" required>
-					</md-input-container> <br />
-					<md-input-container>
-					<label>Account</label>
-					<md-select ng-model="purchaseAccount" class="md-no-underline" required>
-						<div ng-repeat="account in accounts">
-							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
-						</div>
-					</md-select>
-					</md-input-container> <br />
-					<md-input-container>
-						<label>Location</label>
-						<input ng-model="purchaseLocation">
-					</md-input-container> <br />
-					<md-input-container>
-						<label>Comment</label>
-						<input  ng-model="purchaseComment">
-					</md-input-container> <br />
-					<md-input-container>
-						<md-button type="submit" class="md-raised md-primary" > Submit Transaction </md-button>
-					</md-input-container>
-				</form>
-			</section>
-		</md-tab>
 		<md-tab label="Transfer">
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
 				<form name="transferForm" ng-submit="transferForm.$valid && transfer()" novalidate>
@@ -97,6 +68,35 @@
 					<md-input-container>
 						<md-button type="submit" class="md-raised md-primary" > Withdraw </md-button>
 					</md-input-container> <br />
+				</form>
+			</section>
+		</md-tab>
+		<md-tab label="Purchase">
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<form name="purchaseForm" ng-submit="purchaseForm.$valid && purchase()" novalidate>
+					<md-input-container>
+						<label>Amount</label>
+						<input ng-model="purchaseAmount" required>
+					</md-input-container> <br />
+					<md-input-container>
+					<label>Account</label>
+					<md-select ng-model="purchaseAccount" class="md-no-underline" required>
+						<div ng-repeat="account in accounts">
+							<md-option value="{{account._id}}">{{account.accountNumber}}&emsp;{{account.name}}&emsp;${{account.balance}}</md-option>
+						</div>
+					</md-select>
+					</md-input-container> <br />
+					<md-input-container>
+						<label>Location</label>
+						<input ng-model="purchaseLocation">
+					</md-input-container> <br />
+					<md-input-container>
+						<label>Comment</label>
+						<input  ng-model="purchaseComment">
+					</md-input-container> <br />
+					<md-input-container>
+						<md-button type="submit" class="md-raised md-primary" > Submit Transaction </md-button>
+					</md-input-container>
 				</form>
 			</section>
 		</md-tab>

@@ -6,31 +6,29 @@
 }
 </style>
 
-<md-content>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-		<p>{{message}}</p>
-		<div>
-			<list>
-				<div ng-repeat="account in accounts">
-					<div layout="column" layout-align="center center" >
-						<h2>{{account.name}}</h2>
-						<p> ${{account.balance}}</p>
-					</div>
-					<div layout="column" layout-align="center center" ng-cloak>
-						<table>
-							<tr><th>Amount</th>
-							<th>Type</th>
-							<th>Date</th></tr>
-							<tr ng-repeat="transaction in account.transactions">
-								<td>{{transaction.amount}}</td>
-								<td>{{transaction.type}}</td>
-								<td>{{transaction.date}}</td>
-							</tr>
-						</table>
-					</div>
-					<br /> <hr />
-				</div>
-			</list>
+<md-content class="md-padding" layout-xs="column" layout="column" layout-align="center center">
+    <div flex-xs flex-gt-xs="50" layout="column" layout-align="center center">
+		<div ng-repeat="account in accounts">
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">{{account.name}}</span>
+						<span class="md-subhead">${{account.balance}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<table>
+					<tr ng-repeat="transaction in account.transactions">
+					<td>{{transaction.amount}}</td>
+					<td>{{transaction.type}}</td>
+					<td>{{transaction.date}}</td>
+					</tr>
+					</table>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-primary md-raised" ng-href="#transactions">Transfer</md-button>
+				</md-card-actions>
+			</md-card>
 		</div>
-	</section>
+	</div>
 </md-content>
