@@ -3,13 +3,13 @@ var config = require('./../config');
 var Member = require('./../database/models/member');
 
 exports.authenticate = function(info, callback){
-	Member.find({username : info.username}).limit(1).next(function(err, member) {
+	Member.findOne({username : info.username}, function(err, member) {
 		
 		console.log(member);
 		
 		if(err) {
 			callback(err);
-		} else {
+		} else if (member) {
 		
 			data = {
 				token: "",
@@ -33,6 +33,8 @@ exports.authenticate = function(info, callback){
 					callback({status: 200, data: data});
 				}
 			});
+		} else {
+			callback({status: 401, message: "Username not found"});	
 		}
 	});
 }

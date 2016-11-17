@@ -81,7 +81,7 @@ function isAuthenticated(info, callback){
 		});
 	} else {
 		callback({ 
-		  status: 403,
+		  status: 401,
 		  success: false, 
 		  message: 'No token provided.' 
 		});
