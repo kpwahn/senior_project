@@ -1,4 +1,5 @@
 var Member = require('./../database/models/member');
+var authUtil = require('./util/authenticateUtil');
 
 /*****************************************************************************
 * CREATE ACCOUNT
@@ -20,12 +21,15 @@ exports.createNewMember = function(info, callback){
 
 			//Call save on the Account model which is a Mongoose function that will save the model to the MongoDB database
 			new_member.save(function(err, data) {
-			if (err) {
-				callback(err);
-			}else {
-				//TODO passback account numbers and such, NOT PASSWORD
-				callback({status: 200, message: "Member created", data: data});
-			}
+				if (err) {
+					callback(err);
+				}else {
+					//TODO passback account numbers and such, NOT PASSWORD
+					console.log(data);
+					authUtil.authenticate(data, function(result){
+						callback(result);
+					});
+				}
 			});
 		}
 	});
