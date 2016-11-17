@@ -1,5 +1,5 @@
 var Member = require('./../database/models/member');
-var authUtil = require('./util/authenticateUtil');
+var authUtil = require('./authenticateUtil');
 
 /*****************************************************************************
 * CREATE ACCOUNT
