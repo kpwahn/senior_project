@@ -19,7 +19,10 @@ exports.authenticate = function(info, callback){
 			member.verifyPassword(info.password, function(err, isMatch) {
 				if(err) {
 					callback(err);
-				} else {	
+				} else {
+					
+					console.log("Did this work? " + isMatch);
+					
 					// create a token
 					var token = jwt.sign(member, config.secret, {
 						expiresIn : 60 * 10 // Ten minutes
