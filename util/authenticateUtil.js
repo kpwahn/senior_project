@@ -3,10 +3,7 @@ var config = require('./../config');
 var Member = require('./../database/models/member');
 
 exports.authenticate = function(info, callback){
-	Member.findOne({username : info.username}, function(err, member) {
-		
-		console.log(member);
-		
+	Member.findOne({username : info.username}, function(err, member) {		
 		if(err) {
 			callback(err);
 		} else if (member) {
@@ -19,7 +16,7 @@ exports.authenticate = function(info, callback){
 			member.verifyPassword(info.password, function(err, isMatch) {
 				if(err) {
 					callback(err);
-				} else {
+				} else if (isMatch) {
 					
 					console.log("Did this work? " + isMatch);
 					
@@ -34,6 +31,8 @@ exports.authenticate = function(info, callback){
 					}
 					
 					callback({status: 200, data: data});
+				} else {
+					callback({status: 401, message: "Incorrect password for " + info.username});	
 				}
 			});
 		} else {
