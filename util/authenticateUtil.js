@@ -3,7 +3,7 @@ var config = require('./../config');
 var Member = require('./../database/models/member');
 
 exports.authenticate = function(info, callback){
-	Member.findOne({username : info.username}, function(err, member) {
+	Member.find({username : info.username}).limit(1).next(function(err, member) {
 		
 		console.log(member);
 		
