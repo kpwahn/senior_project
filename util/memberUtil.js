@@ -26,9 +26,11 @@ exports.createNewMember = function(info, callback){
 				}else {
 					//TODO passback account numbers and such, NOT PASSWORD
 					console.log("Here " + JSON.stringify(data));
-					authUtil.authenticate(data, function(result){
-						callback(result);
-					});
+					callback(result);
+					callback(result);
+					//authUtil.authenticate(data, function(result){
+						//callback(result);
+					//});
 				}
 			});
 		}
