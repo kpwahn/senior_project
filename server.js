@@ -94,7 +94,7 @@ function isAuthenticated(info, callback){
 // Hit this endpoint in order to authenicate users
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
-		if (info.status == 401) {
+		if (info.status == 400) {
 			res.send(info);
 		} else {
 			authUtil.authenticate(info, function(result){
@@ -107,7 +107,7 @@ app.post('/authenticate', function(req, res) {
 // This endpoint is not protected using isAuthenticated
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
-		if (info.status == 401) {
+		if (info.status == 400) {
 			res.send(info);
 		} else {
 			memberUtil.createNewMember(info, function(result){
@@ -120,13 +120,17 @@ app.post('/createNewMember', function(req, res) {
 // In order to create an account you must have the members _id value (maybe implement a unique member number?
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
-		if (info.status == 401) {
+		if (info.status == 400) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				accountUtil.createAccount(info, function(result) {
-					res.send(result);
-				});
+				if (info.status == 401) {
+					res.send(info);
+				} else {
+					accountUtil.createAccount(info, function(result) {
+						res.send(result);
+					});
+				}
 			});
 		}
 	});
@@ -134,13 +138,17 @@ app.post('/createAccount', function(req, res) {
 
 app.post('/getAccounts', function(req, res) {
 	getRequestInfo(req, function(info){
-		if (info.status == 401) {
+		if (info.status == 400) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				accountUtil.getAccounts(info, function(result) {
-					res.send(result);
-				});
+				if (info.status == 401) {
+					res.send(info);
+				} else {
+					accountUtil.getAccounts(info, function(result) {
+						res.send(result);
+					});
+				}
 			});
 		}
 	});
@@ -148,13 +156,17 @@ app.post('/getAccounts', function(req, res) {
 
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
-		if (info.status == 401) {
+		if (info.status == 400) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				transactionUtil.makeTransaction(info, function(result) {
-					res.send(result);
-				});
+				if (info.status == 401) {
+					res.send(info);
+				} else {
+					transactionUtil.makeTransaction(info, function(result) {
+						res.send(result);
+					});
+				}
 			});
 		}
 	});
