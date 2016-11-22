@@ -31,7 +31,7 @@ memberSchema.pre('save', function(callback) {
 				callback();
 			});
 		});
-	} catch(...){
+	} catch(e){
 		console.log("ERROR THROWN BY BCRYPT");	
 	}
 });
