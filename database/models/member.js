@@ -37,6 +37,7 @@ memberSchema.pre('save', function(callback) {
 });
 
 memberSchema.methods.verifyPassword = function(password, callback) {
+	console.log(password + " Typeof: " + typeof(password));
 	try{
 		bcrypt.compare(password, this.password, function(err, isMatch) {
 			if (err) {
