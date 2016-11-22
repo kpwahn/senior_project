@@ -36,16 +36,20 @@ exports.createAccount = function(info, callback){
 }
 
 exports.getAccounts = function(info, callback){
-	Account.find({"member_id" : info.member_id}, function(err, accounts) {
-		if(err){
-			callback(err);
-		}else {
-			accounts.forEach(function(account) {
-				//Mask the account number
-				account.accountNumber = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 
-			});
+	if(info.member_id) {
+		Account.find({"member_id" : info.member_id}, function(err, accounts) {
+			if(err){
+				callback(err);
+			}else {
+				accounts.forEach(function(account) {
+					//Mask the account number
+					account.accountNumber = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 
+				});
 
-			callback({status: 200, data: accounts});
-		}
-	})
+				callback({status: 200, data: accounts});
+			}
+		})
+	} else {
+		callback({status: 401, message: "missing key 'member_id'"});		
+	}
 }

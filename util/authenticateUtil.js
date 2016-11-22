@@ -35,13 +35,13 @@ exports.authenticate = function(info, callback){
 						}
 					});
 				} else {
-					callback({status: 401, message: "missing 'password'"});	
+					callback({status: 401, message: "missing key: 'password'"});	
 				}
 			} else {
 				callback({status: 401, message: "Username not found"});	
 			}
 		});
 	}else {
-		callback({status: 401, message: "missing 'username'"});	
+		callback({status: 401, message: "missing key: 'username'"});	
 	}
 }
