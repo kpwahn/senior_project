@@ -19,15 +19,19 @@ exports.createAccount = function(info, callback){
 		if (err) {
 			callback(err);
 		}
-
-		// Push new account onto the appropriate member's account array
-		Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
-				if (err) {
-					callback(err);
-				}
-				//add our new id into the member array of accounts
-				callback({status: 200, data: data});
-		});
+		
+		if(member_id){
+			// Push new account onto the appropriate member's account array
+			Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
+					if (err) {
+						callback(err);
+					}
+					//add our new id into the member array of accounts
+					callback({status: 200, data: data});
+			});
+		} else {
+			callback({status: 200, data: data})	
+		}
 	});
 }
 

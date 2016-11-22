@@ -7,7 +7,6 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 		
 		$http.post(loginService.baseURL + "/authenticate/", json)
 		.success(function (data) {
-			console.log(data);
 			if (data.status == 401){
 				alert("Invalid username or password. Please try again");
 				$scope.username = "";
