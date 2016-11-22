@@ -37,12 +37,16 @@ memberSchema.pre('save', function(callback) {
 });
 
 memberSchema.methods.verifyPassword = function(password, callback) {
-  bcrypt.compare(password, this.password, function(err, isMatch) {
-    if (err) {
-		return callback(err);
+	try{
+		bcrypt.compare(password, this.password, function(err, isMatch) {
+			if (err) {
+				return callback(err);
+			}
+			callback(null, isMatch);
+		});
+	}catch(e){
+		console.log("ERROR THROWN BY BCRYPT!!!!!!!!!1");	
 	}
-    callback(null, isMatch);
-  });
 };
 
 // Export the Mongoose model
