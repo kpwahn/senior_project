@@ -13,27 +13,31 @@ exports.authenticate = function(info, callback){
 				member_id: ""
 			}
 
-			member.verifyPassword(info.password, function(err, isMatch) {
-				if(err) {
-					callback(err);
-				} else if (isMatch) {					
-					// create a token
-					var token = jwt.sign(member, config.secret, {
-						expiresIn : 60 * 10 // Ten minutes
-					});
+			if (info.password) {
+				member.verifyPassword(info.password, function(err, isMatch) {
+					if(err) {
+						callback(err);
+					} else if (isMatch) {					
+						// create a token
+						var token = jwt.sign(member, config.secret, {
+							expiresIn : 60 * 10 // Ten minutes
+						});
 
-					data = {
-						token: token,
-						member_id: member._id
+						data = {
+							token: token,
+							member_id: member._id
+						}
+
+						callback({status: 200, data: data});
+					} else {
+						callback({status: 401, message: "Incorrect password for " + info.username});	
 					}
-					
-					callback({status: 200, data: data});
-				} else {
-					callback({status: 401, message: "Incorrect password for " + info.username});	
-				}
-			});
+				});
+			} else {
+				callback({status: 401, message: "missing 'password'"});	
+			}
 		} else {
-			callback({status: 401, message: "Username not found"});	
+			callback({status: 401, message: "Username not found " + member});	
 		}
 	});
 }
