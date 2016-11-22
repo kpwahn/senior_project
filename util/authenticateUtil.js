@@ -3,41 +3,45 @@ var config = require('./../config');
 var Member = require('./../database/models/member');
 
 exports.authenticate = function(info, callback){
-	Member.findOne({username : info.username}, function(err, member) {		
-		if(err) {
-			callback(err);
-		} else if (member) {
-		
-			data = {
-				token: "",
-				member_id: ""
-			}
+	if(info.username) {
+		Member.findOne({username : info.username}, function(err, member) {		
+			if(err) {
+				callback(err);
+			} else if (member) {
 
-			if (info.password) {
-				member.verifyPassword(info.password, function(err, isMatch) {
-					if(err) {
-						callback(err);
-					} else if (isMatch) {					
-						// create a token
-						var token = jwt.sign(member, config.secret, {
-							expiresIn : 60 * 10 // Ten minutes
-						});
+				data = {
+					token: "",
+					member_id: ""
+				}
 
-						data = {
-							token: token,
-							member_id: member._id
+				if (info.password) {
+					member.verifyPassword(info.password, function(err, isMatch) {
+						if(err) {
+							callback(err);
+						} else if (isMatch) {					
+							// create a token
+							var token = jwt.sign(member, config.secret, {
+								expiresIn : 60 * 10 // Ten minutes
+							});
+
+							data = {
+								token: token,
+								member_id: member._id
+							}
+
+							callback({status: 200, data: data});
+						} else {
+							callback({status: 401, message: "Incorrect password for " + info.username});	
 						}
-
-						callback({status: 200, data: data});
-					} else {
-						callback({status: 401, message: "Incorrect password for " + info.username});	
-					}
-				});
+					});
+				} else {
+					callback({status: 401, message: "missing 'password'"});	
+				}
 			} else {
-				callback({status: 401, message: "missing 'password'"});	
+				callback({status: 401, message: "Username not found"});	
 			}
-		} else {
-			callback({status: 401, message: "Username not found " + member});	
-		}
-	});
+		});
+	}else {
+		callback({status: 401, message: "missing 'username'"});	
+	}
 }
