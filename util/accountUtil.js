@@ -17,10 +17,12 @@ exports.createAccount = function(info, callback){
 	
 	new_account.save(function(err, data) {
 		if (err) {
+			console.log("1");
 			callback(err);
 		} else {
 			Account.find({"name" : info.name}, function(err, account) {
 				if(err) {
+					console.log("2");
 					callback(err);
 				} else if (account.length > 1) {
 					callback({status: 400, message: "Account name already exists"});	
