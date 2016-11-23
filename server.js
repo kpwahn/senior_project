@@ -52,6 +52,7 @@ function getRequestInfo(req, callback){
 	var info = "";
 	
     req.on("data",  function(data){
+		console.log(data);
         info += data;
     });
 	
