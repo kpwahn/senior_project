@@ -10,8 +10,8 @@ angular.module('bankApp').controller('createAccountController', ['$scope', '$htt
 	
 	$scope.createAccount = function(){
 		json = {
-			"account_name" : $scope.account_name,
-			"account_type" : $scope.account_type,
+			"name" : $scope.account_name,
+			"type" : $scope.account_type,
 			"member_id" : loginService.member_id,
 			"token" : loginService.member.token
 		}

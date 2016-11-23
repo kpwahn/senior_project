@@ -14,25 +14,29 @@ exports.createAccount = function(info, callback){
 	new_account.type = info.type;
 	new_account.balance = 0.00;
 	new_account.transactions = [];
-	console.log(info.member_id);
+	
 	new_account.save(function(err, data) {
 		if (err) {
-			console.log("1");
 			callback(err);
-		}
-		
-		if(info.member_id){
-			// Push new account onto the appropriate member's account array
-			Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
-					if (err) {
-						console.log("2");
-						callback(err);
-					}
-					//add our new id into the member array of accounts
-					callback({status: 200, data: data});
-			});
 		} else {
-			callback({status: 200, data: data})	
+			Account.find({"name" : info.name}, function(err, account) {
+				if(err) {
+					console.log("DUPLICATE " + err);
+				} else {
+					if(info.member_id){
+						// Push new account onto the appropriate member's account array
+						Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
+								if (err) {
+									callback(err);
+								}
+								//add our new id into the member array of accounts
+								callback({status: 200, data: data});
+						});
+					} else {
+						callback({status: 200, data: data})	
+					}
+				}
+			});
 		}
 	});
 }
