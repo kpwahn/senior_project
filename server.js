@@ -125,7 +125,7 @@ app.post('/createAccount', function(req, res) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				if (info.status == 401) {
+				if (info.status == 403) {
 					res.send(info);
 				} else {
 					accountUtil.createAccount(info, function(result) {
@@ -143,7 +143,7 @@ app.post('/getAccounts', function(req, res) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				if (info.status == 401) {
+				if (info.status == 403) {
 					res.send(info);
 				} else {
 					accountUtil.getAccounts(info, function(result) {
@@ -161,7 +161,7 @@ app.post('/makeTransaction', function(req, res) {
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
-				if (info.status == 401) {
+				if (info.status == 403) {
 					res.send(info);
 				} else {
 					transactionUtil.makeTransaction(info, function(result) {
