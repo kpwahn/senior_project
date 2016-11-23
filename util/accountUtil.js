@@ -6,10 +6,7 @@ var util = require('./util');
 * GET ACCOUNT INFO
 ******************************************************************************/
 exports.createAccount = function(info, callback){
-	console.log("INFO: " + JSON.stringify(info));
 	var new_account = new Account();
-
-	console.log("Name " + info.name);
 	
 	new_account.member_id = info.member_id;
 	new_account.name = info.name;
@@ -22,12 +19,10 @@ exports.createAccount = function(info, callback){
 	
 	new_account.save(function(err, data) {
 		if (err) {
-			console.log("1");
 			callback(err);
 		} else {
 			Account.find({"name" : info.name}, function(err, account) {
 				if(err) {
-					console.log("2");
 					callback(err);
 				} else if (account.length > 1) {
 					callback({status: 400, message: "Account name already exists"});	
