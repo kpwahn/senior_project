@@ -76,6 +76,7 @@ function isAuthenticated(info, callback){
 			if (err) {
 				return callback({ status: 403, success: false, message: 'Failed to authenticate token.', data: decoded });    
 			} else {
+				console.log("Authenticate says: " + decoded);
 				callback(info);
 			}
 		});
