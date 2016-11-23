@@ -9,9 +9,9 @@ exports.createAccount = function(info, callback){
 	var new_account = new Account();
 
 	new_account.member_id = info.member_id;
-	new_account.name = info.account_name;
+	new_account.name = info.name;
 	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
-	new_account.type = info.account_type;
+	new_account.type = info.type;
 	new_account.balance = 0.00;
 	new_account.transactions = [];
 	console.log(info.member_id);
