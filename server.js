@@ -52,13 +52,13 @@ function getRequestInfo(req, callback){
 	var info = "";
 	
     req.on("data",  function(data){
-		console.log(data);
         info += data;
     });
 	
     req.on("end", function(){
 		try {
 			info = JSON.parse(info);
+			console.log(info);
 		} catch(error) {
 			callback({status: 400, message: "Malformed JSON"});	
 		}
