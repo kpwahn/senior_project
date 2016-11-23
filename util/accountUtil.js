@@ -15,6 +15,8 @@ exports.createAccount = function(info, callback){
 	new_account.balance = 0.00;
 	new_account.transactions = [];
 	
+	console.log(JSON.stringify(new_account);
+	
 	new_account.save(function(err, data) {
 		if (err) {
 			console.log("1");
