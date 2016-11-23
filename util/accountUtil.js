@@ -21,8 +21,11 @@ exports.createAccount = function(info, callback){
 		} else {
 			Account.find({"name" : info.name}, function(err, account) {
 				if(err) {
-					console.log("DUPLICATE " + err);
-				} else {
+					callback(err);
+				} else if (account.length > 1) {
+					callback({status: 400, message: "Account name already exists"});	
+				}
+				else {
 					console.log(account);
 					if(info.member_id){
 						// Push new account onto the appropriate member's account array
