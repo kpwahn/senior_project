@@ -23,6 +23,7 @@ exports.createAccount = function(info, callback){
 				if(err) {
 					console.log("DUPLICATE " + err);
 				} else {
+					console.log(account);
 					if(info.member_id){
 						// Push new account onto the appropriate member's account array
 						Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
