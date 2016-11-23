@@ -6,7 +6,7 @@ var util = require('./util');
 * GET ACCOUNT INFO
 ******************************************************************************/
 exports.createAccount = function(info, callback){
-	console.log("INFO: " + info);
+	console.log("INFO: " + JSON.stringify(info));
 	var new_account = new Account();
 
 	console.log("Name " + info.name);
