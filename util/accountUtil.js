@@ -8,9 +8,11 @@ var util = require('./util');
 exports.createAccount = function(info, callback){
 	var new_account = new Account();
 
+	console.log("Name " + info.name);
+	
 	new_account.member_id = info.member_id;
 	new_account.name = info.name;
-	new_account.accountNumber = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
+	new_account.account_number = Math.floor(Math.random() * (1000000000 - 1000000) + 1000000);
 	new_account.type = info.type;
 	new_account.balance = 0.00;
 	new_account.transactions = [];
@@ -57,7 +59,7 @@ exports.getAccounts = function(info, callback){
 			}else {
 				accounts.forEach(function(account) {
 					//Mask the account number
-					account.accountNumber = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 
+					account.account_number = account.accountNumber.replace(/\d(?=\d{4})/g, "*");				 
 				});
 
 				callback({status: 200, data: accounts});
