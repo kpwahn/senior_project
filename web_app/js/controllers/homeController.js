@@ -5,7 +5,6 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		window.location.href = "#/login";
 		return;
 	} else { 
-	
 		$scope.message = ""; 
 		$scope.accounts = {};
 
@@ -16,6 +15,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		
 		$http.post(loginService.baseURL + "/getAccounts/", json)
 			.success(function (data) {	
+			console.log(data);
 				if(data.status == 401){
 					loginService.member.token = null;
 					alert("Your session has timed out. Please log in");
@@ -32,7 +32,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 					});
 				});
 				
-				if($scope.accounts.length == 0){
+				if(data.data.length == 0){
 					$scope.message = "You currently have no accounts";	
 				}
 					

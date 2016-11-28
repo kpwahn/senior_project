@@ -55,7 +55,6 @@ exports.getAccounts = function(info, callback){
 			}else {
 				accounts.forEach(function(account) {
 					//Mask the account number
-					console.log("1 " + account);
 					account.account_number = account.account_number.replace(/\d(?=\d{4})/g, "*");				 
 				});
 
