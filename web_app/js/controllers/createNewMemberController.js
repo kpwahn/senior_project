@@ -21,6 +21,7 @@ angular.module('bankApp').controller('createNewMemberController', ['$scope', '$h
 				loginService.member.token = data.data.token;
 				loginService.username = json.username;
 				loginService.member_id = data.data.member_id;
+				alert("Member created");
 				window.location.href = "#";
 			}).
 			error(function (err) {
