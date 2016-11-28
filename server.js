@@ -58,7 +58,6 @@ function getRequestInfo(req, callback){
     req.on("end", function(){
 		try {
 			info = JSON.parse(info);
-			console.log(info);
 		} catch(error) {
 			callback({status: 400, message: "Malformed JSON"});	
 		}
@@ -174,7 +173,6 @@ app.post('/makeTransaction', function(req, res) {
 });
 
 app.get('/index', function(req, res) {
-	console.log(__dirname + "/web_app/index.html");
 	res.sendfile('/web_app/index.html', { root: __dirname });
 });
 
