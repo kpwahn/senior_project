@@ -33,7 +33,7 @@ exports.help = function(callback) {
 			"/makeTransaction" : {
 				"method" : "POST",
 				"requires_authentication" : true,
-				"description" : "Endpoint used to make transactions",
+				"description" : "Endpoint used to make transactions. After type is selected, additional keys may be necessary",
 				"keys" : [{key : "member_id",
 						   "optional" : false}, 
 						  { "key" : "token", 
@@ -43,8 +43,6 @@ exports.help = function(callback) {
 						   "optional" : false}, 
 						  { "key" : "amount", 
 						   "optional" : false}] 
-				
-				//Add in other keys for specific types, or add that once they hit this endpoint?
 			},
 			"/getAccounts" : {
 				"method" : "POST",
@@ -80,6 +78,5 @@ exports.help = function(callback) {
 			}
 		}
 	}
-	
 	return callback(helpMessage);
 }
