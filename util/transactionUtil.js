@@ -36,7 +36,7 @@ exports.makeTransaction = function(info, callback){
 			break;
 		}	
 	} else {
-		callback({{status: 400, message: "Invalid 'amount'"}})	
+		callback({status: 400, message: "Invalid 'amount'"})	
 	}
 }
 
