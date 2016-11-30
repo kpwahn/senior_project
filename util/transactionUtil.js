@@ -7,32 +7,37 @@ exports.makeTransaction = function(info, callback){
 
 	transaction.date = new Date();
 	transaction.type = info.type;
-	transaction.amount = util.formatAmount(info.amount);
+	
+	if(util.isValidAmount(info.amount)){
+		transaction.amount = util.formatAmount(info.amount);
 
-	switch(transaction.type){
-		case "purchase":
-			transaction.location = info.location;
-			transaction.comment = info.comment;
-			submitTransaction(transaction, info, callback);
-		break;
-		case "transfer":
-			// A transfer is just a withdraw and a deposit
-			info.type = "withdraw";
-			info.account = info.fromAccount;
-			submitTransaction(transaction, info, function(){
-				info.type = "deposit";
-				info.account = info.toAccount
+		switch(transaction.type){
+			case "purchase":
+				transaction.location = info.location;
+				transaction.comment = info.comment;
 				submitTransaction(transaction, info, callback);
-			});
+			break;
+			case "transfer":
+				// A transfer is just a withdraw and a deposit
+				info.type = "withdraw";
+				info.account = info.fromAccount;
+				submitTransaction(transaction, info, function(){
+					info.type = "deposit";
+					info.account = info.toAccount
+					submitTransaction(transaction, info, callback);
+				});
 
-		break;
-		case "deposit":
-			submitTransaction(transaction, info, callback);
-		break;
-		case "withdraw":
-			submitTransaction(transaction, info, callback);
-		break;
-	}	
+			break;
+			case "deposit":
+				submitTransaction(transaction, info, callback);
+			break;
+			case "withdraw":
+				submitTransaction(transaction, info, callback);
+			break;
+		}	
+	} else {
+		callback({{status: 400, message: "Invalid 'amount'"}})	
+	}
 }
 
 function updateAmount(amount, change, type){

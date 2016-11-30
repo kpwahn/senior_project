@@ -22,7 +22,6 @@ var transactionUtil = require('./util/transactionUtil')
 var authUtil = require('./util/authenticateUtil');
 var helpUtil = require('./util/helpUtil');
 var config = require('./config');
-var util = require('./util/util')
 
 var app = express();
 /*****************************************************************************
@@ -83,7 +82,6 @@ function isAuthenticated(info, callback){
 	} else {
 		callback({ 
 		  status: 401,
-		  success: false, 
 		  message: "Missing key 'token'" 
 		});
 	}
@@ -169,20 +167,6 @@ app.post('/makeTransaction', function(req, res) {
 					});
 				}
 			});
-		}
-	});
-});
-
-//TEST//
-app.post('/test', function(req, res) {
-	getRequestInfo(req, function(info){
-		if (info.status == 400) {
-			res.send(info);
-		} else {
-			if( util.isValidAmount(info.amount) )
-				res.send({message: info.amount + " is valid"});
-			else
-				res.send({message: info.amount + " is NOT OKAY"});
 		}
 	});
 });
