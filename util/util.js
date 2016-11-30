@@ -11,5 +11,7 @@ exports.formatAmount = function(amount){
 }
 
 exports.isValidAmount = function(amount){
+	console.log(amount);
+	console.log(!!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/);
 	return !!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/)
 }
