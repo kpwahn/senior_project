@@ -22,6 +22,7 @@ var transactionUtil = require('./util/transactionUtil')
 var authUtil = require('./util/authenticateUtil');
 var helpUtil = require('./util/helpUtil');
 var config = require('./config');
+var util = require('./util/util')
 
 var app = express();
 /*****************************************************************************
