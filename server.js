@@ -172,6 +172,21 @@ app.post('/makeTransaction', function(req, res) {
 	});
 });
 
+//TEST//
+app.post('/test', function(req, res) {
+	getRequestInfo(req, function(info){
+		if (info.status == 400) {
+			res.send(info);
+		} else {
+			if( util.isValidAmount(info.amount) )
+				res.send({message: info.amount + " is valid"});
+			else
+				res.send({message: info.amount + " is NOT OKAY"});
+		}
+	});
+});
+
+
 app.get('/index', function(req, res) {
 	res.sendfile('/web_app/index.html', { root: __dirname });
 });
