@@ -26,7 +26,6 @@ exports.createAccount = function(info, callback){
 					callback({status: 400, message: "Account name already exists"});	
 				}
 				else {
-					console.log(account);
 					if(info.member_id){
 						// Push new account onto the appropriate member's account array
 						Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
