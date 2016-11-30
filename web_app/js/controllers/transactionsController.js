@@ -74,17 +74,19 @@ angular.module('bankApp').controller('transactionsController', ['$scope', '$http
 		
 		$http.post(loginService.baseURL + "/makeTransaction/", json)
 			.success(function (data) {
-			console.log(JSON.stringify(data));
 				if(data.status == 403){
 					loginService.member.token = null;
 					alert("Your session has timed out. Please log in and try again");
 					loginService.previousPage = "#/transactions"
 					window.location.href = "#/login";
 					return;
-				}
+				} else if (data.status == 400) {
+					alert("invalid amount");
+				} else {
 				
-				$scope.accounts = data;
-				window.location.href = "#";
+					$scope.accounts = data;
+					window.location.href = "#";
+				}
 			}).
 			error(function (err) {
 				console.log("Error with the request " + err);
