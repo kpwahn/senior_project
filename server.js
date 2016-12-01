@@ -115,7 +115,7 @@ app.post('/createNewMember', function(req, res) {
 		} else {
 			memberUtil.createNewMember(info, function(result){
 				console.log("2");
-				res.status(info.result);
+				res.status(result.staus);
 				console.log("3");
 				res.send(result);
 				console.log("4");
