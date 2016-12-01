@@ -51,19 +51,18 @@ function updateAmount(amount, change, type){
 function submitTransaction(transaction, info, callback){
 	transaction.save(function(err, data) {
 		if (err) {
-			callback({message: "Error at transactionUtil - submitTransaction - line 36", error: err});
+			callback({status: 400, data: err});
 		} else {
 			// Pushes the transaction onto the account
 			Account.findByIdAndUpdate(info.account, {$push: {"transactions": data}}, {safe: true, new : true}, function(err, account) {
 					if (err) {
-						callback(err);
+						callback({status: 400, data: err});
 					}
 					
 					// Updates the balances of the account
 					Account.findByIdAndUpdate(account._id, {"balance": util.formatAmount(updateAmount(account.balance, info.amount, info.type))}, {safe: true, new : true}, function(err, updatedAccount) {
-						
 						if (err) {
-							callback(err);
+							callback({status: 400, data: err});
 						}
 						callback({status: 200, data: data});
 					});

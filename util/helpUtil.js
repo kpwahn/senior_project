@@ -130,4 +130,34 @@ paths:
                 type: string
         400:
           description: Malformed JSON
+          
+  /makeTransaction:
+    post:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Makes a transactions for a member's account
+      parameters:
+        - name: member_id
+          in: query
+          description: Members's id number
+          required: true
+          type: string
+        - name: type
+          in: query
+          description: the type of transaction (purchase, transfer, withdraw, deposit)
+          required: true
+          type: string
+        - name: amount
+          in: query
+          description: Desired password of the new member
+          required: true
+          type: string
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successfully made transaction
+        400:
+          description: Malformed JSON
 */
