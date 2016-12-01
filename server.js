@@ -108,12 +108,17 @@ app.post('/authenticate', function(req, res) {
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			console.log("0");
 			res.status(info.status);
+			console.log("1");
 			res.send(info);
 		} else {
 			memberUtil.createNewMember(info, function(result){
+				console.log("2");
 				res.status(info.result);
+				console.log("3");
 				res.send(result);
+				console.log("4");
 			});
 		}
 	});
