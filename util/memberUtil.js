@@ -27,7 +27,7 @@ exports.createNewMember = function(info, callback){
 					data.password = info.password;
 					// Log in the new user
 					authUtil.authenticate(data, function(result){
-						callback(result);
+						callback({status: 200, data: result});
 					});
 				}
 			});

@@ -94,6 +94,7 @@ function isAuthenticated(info, callback){
 app.post('/authenticate', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			res.status(400);
 			res.send(info);
 		} else {
 			authUtil.authenticate(info, function(result){
@@ -107,9 +108,11 @@ app.post('/authenticate', function(req, res) {
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			res.status(info.status);
 			res.send(info);
 		} else {
 			memberUtil.createNewMember(info, function(result){
+				res.status(info.result);
 				res.send(result);
 			});
 		}
@@ -120,10 +123,12 @@ app.post('/createNewMember', function(req, res) {
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			res.status(info.status);
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
 				if (info.status == 403) {
+					res.status(info.status);
 					res.send(info);
 				} else {
 					accountUtil.createAccount(info, function(result) {
@@ -138,10 +143,12 @@ app.post('/createAccount', function(req, res) {
 app.post('/getAccounts', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			res.status(info.status);
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
 				if (info.status == 403) {
+					res.status(info.status);
 					res.send(info);
 				} else {
 					accountUtil.getAccounts(info, function(result) {
@@ -156,10 +163,12 @@ app.post('/getAccounts', function(req, res) {
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
+			res.status(info.status);
 			res.send(info);
 		} else {
 			isAuthenticated(info, function(info){
 				if (info.status == 403) {
+					res.status(info.status);
 					res.send(info);
 				} else {
 					transactionUtil.makeTransaction(info, function(result) {

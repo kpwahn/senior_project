@@ -80,3 +80,54 @@ exports.help = function(callback) {
 	}
 	return callback(helpMessage);
 }
+
+
+/*
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: Bank API
+
+# Describe your paths here
+paths:
+  /createNewMember:
+    post:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Creates a new member account
+      parameters:
+        - name: member_name
+          in: query
+          description: Full name of member
+          required: true
+          type: string
+        - name: username
+          in: query
+          description: Desired username of the new member
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: Desired password of the new member
+          required: true
+          type: string
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successfully created a new member
+          schema:
+            properties:
+              token:
+                type: string
+              member_id:
+                type: string
+        400:
+          description: Malformed JSON
+*/
