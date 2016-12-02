@@ -7,7 +7,7 @@ exports.makeTransaction = function(info, callback){
 
 	transaction.date = new Date();
 	transaction.type = info.type;
-	console.log(info.amount);
+	
 	if(util.isValidAmount(info.amount)){
 		transaction.amount = util.formatAmount(info.amount);
 
