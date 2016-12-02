@@ -21,7 +21,7 @@ exports.createAccount = function(info, callback){
 		} else {
 			Account.find({"name" : info.name}, function(err, account) {
 				if(err) {
-					callback(err);
+					callback({status: 400, data: err});
 				} else if (account.length > 1) {
 					callback({status: 400, message: "Account name already exists"});	
 				}
@@ -30,7 +30,7 @@ exports.createAccount = function(info, callback){
 						// Push new account onto the appropriate member's account array
 						Member.findByIdAndUpdate(info.member_id, {$push: {"accounts": data}}, {safe: true, new : true}, function(err, data) {
 								if (err) {
-									callback(err);
+									callback({status: 400, data: err});
 								}
 								//add our new id into the member array of accounts
 								callback({status: 200, data: data});
@@ -48,7 +48,7 @@ exports.getAccounts = function(info, callback){
 	if(info.member_id) {
 		Account.find({"member_id" : info.member_id}, function(err, accounts) {
 			if(err){
-				callback(err);
+				callback({status: 400, data: err});
 			}else {
 				accounts.forEach(function(account) {
 					//Mask the account number

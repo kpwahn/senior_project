@@ -6,7 +6,7 @@ exports.authenticate = function(info, callback){
 	if(info.username) {
 		Member.findOne({username : info.username}, function(err, member) {		
 			if(err) {
-				callback(err);
+				callback({status: 400, data: err});
 			} else if (member) {
 
 				data = {
