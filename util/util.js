@@ -15,6 +15,6 @@ exports.isValidAmount = function(amount){
 	// Can't seem to get the regex to not allow a '$', so this.
 	if(amount[0] = '$')
 		return false
-		console.log(!!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/));
-	return !!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/)
+		console.log("IS it true or false?" + !!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/));
+	return !!amount.match(/(?=.)(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/);
 }
