@@ -20,7 +20,7 @@ exports.authenticate = function(info, callback){
 							callback(err);
 						} else if (isMatch) {					
 							// create a token
-							var token = jwt.sign(member, config.secret, {
+							var token = jwt.sign(member, config.database.secret, {
 								expiresIn : 60 * 60 * 24 // Ten minutes
 							});
 
