@@ -29,7 +29,7 @@ var app = express();
 /*****************************************************************************
 * ESTABLISH CONNECTION TO DATABASE
 ******************************************************************************/
-mongoose.connect(config.database);
+mongoose.connect(config.database.path);
 
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
@@ -38,9 +38,9 @@ app.use(function(req, res, next){
 });
 
 var limiter = new RateLimit({
-  windowMs: 15*60*1000, // 15 minutes 
-  max: 100, // limit each IP to 100 requests per windowMs 
-  delayMs: 0 // disable delaying - full speed until the max limit is reached 
+  windowMs: config.limiter.windowMs,
+  max: config.limiter.max,
+  delayMs: config.limiter.delayM 
 });
 
 app.use(limiter);
@@ -52,7 +52,7 @@ app.use(express.static(__dirname + '/web_app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 // Can use this for less code, but then token must be set in the headers { authorization: 'Bearer YOUR_ID_TOKEN_HERE' }
-//app.use("/api/", jwt({ secret: config.secret}));
+//app.use("/api/", jwt({ secret: config.database.secret}));
 
 /***********************************************
 *   Send all requests through here
@@ -82,7 +82,7 @@ function getRequestInfo(req, callback){
 function isAuthenticated(info, callback){
 	if (info.token) {
 		// verifies secret and checks exp
-		jwt.verify(info.token, config.secret, function(err, decoded) {
+		jwt.verify(info.token, config.databse.secret, function(err, decoded) {
 			if (err) {
 				return callback({ status: 403, success: false, message: 'Failed to authenticate token.', data: decoded });    
 			} else {
