@@ -13,6 +13,8 @@ var https = require('https');
 var express = require('express')
 var mongoose = require('mongoose');
 var jwt    = require('jsonwebtoken');
+var RateLimit = require('express-rate-limit');
+
 /*****************************************************************************
 * FILES
 ******************************************************************************/
@@ -34,6 +36,14 @@ app.use(function(req, res, next){
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+var limiter = new RateLimit({
+  windowMs: 15*60*1000, // 15 minutes 
+  max: 5, // limit each IP to 100 requests per windowMs 
+  delayMs: 0 // disable delaying - full speed until the max limit is reached 
+});
+
+app.use(limiter);
 
 /*****************************************************************************
 * Serve up the webpage statically
