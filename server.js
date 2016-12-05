@@ -40,7 +40,7 @@ app.use(function(req, res, next){
 var limiter = new RateLimit({
   windowMs: config.limiter.windowMs,
   max: config.limiter.max,
-  delayMs: config.limiter.delayM 
+  delayMs: config.limiter.delayMs 
 });
 
 app.use(limiter);
