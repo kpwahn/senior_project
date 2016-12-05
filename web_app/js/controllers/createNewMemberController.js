@@ -25,7 +25,7 @@ angular.module('bankApp').controller('createNewMemberController', ['$scope', '$h
 				window.location.href = "#";
 			}).
 			error(function (err) {
-				console.log("Error with the request " + err);
+				console.log("Error with the request " + JSON.stringify(err));
 			})
 		}
     }
