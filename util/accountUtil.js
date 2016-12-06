@@ -46,14 +46,16 @@ exports.createAccount = function(info, callback){
 
 exports.removeAccount = function(info, callback) {
 	console.log(info);
-	Account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
-		if (err) {
-			callback({status: 400, data: err});	
-		} else {
-			console.log("something something " + account);
-			callback(account);
-		}
-	});
+	Account..find({"member_id": info.member_id, "account_number": info.account_number}).remove( callback({status: 200, data: {message: "Account removed"}}) );
+	
+//	remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
+//		if (err) {
+//			callback({status: 400, data: err});	
+//		} else {
+//			console.log("something something " + account);
+//			callback(account);
+//		}
+//	});
 }
 
 exports.getAccounts = function(info, callback){
