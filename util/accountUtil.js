@@ -46,7 +46,7 @@ exports.createAccount = function(info, callback){
 
 exports.removeAccount = function(info, callback) {
 	var account = new Account();
-	
+	console.log(info);
 	account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
 		if (err) {
 			callback({status: 400, data: err});	
