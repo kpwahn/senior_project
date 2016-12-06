@@ -47,7 +47,7 @@ exports.createAccount = function(info, callback){
 exports.deleteAccount = function(info, callback) {
 	var account = new Account();
 	
-	account.remove({}, function(err, account) {
+	account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
 		if (err) {
 			callback({status: 400, data: err});	
 		} else {
@@ -63,10 +63,10 @@ exports.getAccounts = function(info, callback){
 			if(err){
 				callback({status: 400, data: err});
 			}else {
-				accounts.forEach(function(account) {
-					//Mask the account number
-					account.account_number = account.account_number.replace(/\d(?=\d{4})/g, "*");				 
-				});
+//				accounts.forEach(function(account) {
+//					//Mask the account number
+//					account.account_number = account.account_number.replace(/\d(?=\d{4})/g, "*");				 
+//				});
 
 				callback({status: 200, data: accounts});
 			}

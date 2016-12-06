@@ -82,7 +82,7 @@ function getRequestInfo(req, callback){
 function isAuthenticated(info, callback){
 	if (info.token) {
 		// verifies secret and checks exp
-		jwt.verify(info.token, config.databse.secret, function(err, decoded) {
+		jwt.verify(info.token, config.database.secret, function(err, decoded) {
 			if (err) {
 				return callback({ status: 403, success: false, message: 'Failed to authenticate token.', data: decoded });    
 			} else {
