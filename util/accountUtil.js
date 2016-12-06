@@ -44,6 +44,19 @@ exports.createAccount = function(info, callback){
 	});
 }
 
+exports.deleteAccount = function(info, callback) {
+	var account = new Account();
+	
+	account.remove({}, function(err, account) {
+		if (err) {
+			callback({status: 400, data: err});	
+		} else {
+			console.log("something something " + account);
+			callback(account);
+		}
+	});
+}
+
 exports.getAccounts = function(info, callback){
 	if(info.member_id) {
 		Account.find({"member_id" : info.member_id}, function(err, accounts) {

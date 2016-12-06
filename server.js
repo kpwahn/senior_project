@@ -170,6 +170,26 @@ app.post('/getAccounts', function(req, res) {
 	});
 });
 
+app.post('/removeAccount', function(req, res) {
+	getRequestInfo(req, function(info){
+		if (info.status == 400) {
+			res.status(info.status);
+			res.send(info);
+		} else {
+			isAuthenticated(info, function(info){
+				if (info.status == 403) {
+					res.status(info.status);
+					res.send(info);
+				} else {
+					accountUtil.removeAccount(info, function(result) {
+						res.send(result);
+					});
+				}
+			});
+		}
+	});
+});
+
 app.post('/makeTransaction', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
