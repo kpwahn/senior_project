@@ -15,6 +15,7 @@ angular.module('bankApp').controller('homeController', ['$scope', '$http', 'logi
 		
 		$http.post(loginService.baseURL + "/getAccounts/", json)
 			.success(function (data) {	
+			 	console.log(data);
 				if(data.status == 401){
 					loginService.member.token = null;
 					alert("Your session has timed out. Please log in");
