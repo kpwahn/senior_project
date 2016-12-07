@@ -4,13 +4,22 @@
     text-align: left;
     padding: 8px;
 }
+	
+	.account_cards {
+		min-width: 250px;
+	}
+	
+	md-card-content {
+		overflow-y: scroll;
+    	max-height: 102px;	
+	}
 </style>
 
-<md-content layout-padding flex class="md-padding" layout-xs="column" layout="column" layout-align="center center" >
+<md-content class="md-padding" layout="column" layout-align="center" >
 	{{message}}
-    <div flex-xs flex-gt-xs="50" layout="column" layout-align="center center">
+    <div layout="column" layout-sm="column" layout-align="center center">
 		<div ng-repeat="account in accounts">
-			<md-card>
+			<md-card class="account_cards">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">{{account.name}}</span>
