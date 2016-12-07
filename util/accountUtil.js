@@ -45,13 +45,17 @@ exports.createAccount = function(info, callback){
 }
 
 exports.removeAccount = function(info, callback) {
-	Account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
-		if (err) {
-			callback({status: 400, data: err});	
-		} else {
-			callback(account);
-		}
-	});
+	if (info.account_number == null || info.member_id == null){
+		callback({status: 401, message: "Missing key 'token'" });	
+	} else {
+		Account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
+			if (err) {
+				callback({status: 400, data: err});	
+			} else {
+				callback(account);
+			}
+		});
+	}
 }
 
 exports.getAccounts = function(info, callback){
