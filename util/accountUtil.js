@@ -52,7 +52,6 @@ exports.removeAccount = function(info, callback) {
 			if (err) {
 				callback({status: 400, data: err});	
 			} else {
-				console.log(account);
 				if( account.result.n == 0){
 					callback({status: 400, message: "No account or member found"});
 				} else {
