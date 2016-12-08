@@ -94,4 +94,4 @@ exports.changeAccountName = function(info, callback) {
 	} else {
 		callback({status: 401, message: "missing key 'account_number' or 'new_account_name'"});	
 	}
-});
+}

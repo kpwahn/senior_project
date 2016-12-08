@@ -208,7 +208,7 @@ app.post('/makeTransaction', function(req, res) {
 	});
 });
 
-app.post('/makeTransaction', function(req, res) {
+app.post('/changeAccountName', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
 			res.status(info.status);
