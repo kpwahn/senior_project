@@ -219,7 +219,7 @@ app.post('/changeAccountName', function(req, res) {
 					res.status(info.status);
 					res.send(info);
 				} else {
-					acccount.changeAccountName(info, function(result) {
+					account.changeAccountName(info, function(result) {
 						res.send(result);
 					});
 				}
