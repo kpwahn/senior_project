@@ -208,6 +208,26 @@ app.post('/makeTransaction', function(req, res) {
 	});
 });
 
+app.post('/makeTransaction', function(req, res) {
+	getRequestInfo(req, function(info){
+		if (info.status == 400) {
+			res.status(info.status);
+			res.send(info);
+		} else {
+			isAuthenticated(info, function(info){
+				if (info.status == 403) {
+					res.status(info.status);
+					res.send(info);
+				} else {
+					acccount.changeAccountName(info, function(result) {
+						res.send(result);
+					});
+				}
+			});
+		}
+	});
+});
+
 
 app.get('/index', function(req, res) {
 	res.sendfile('/web_app/index.html', { root: __dirname });

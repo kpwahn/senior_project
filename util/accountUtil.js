@@ -45,7 +45,7 @@ exports.createAccount = function(info, callback){
 }
 
 exports.removeAccount = function(info, callback) {
-	if (info.account_number == null || info.member_id == null){
+	if (info.account_number || info.member_id ){
 		callback({status: 401, message: "Missing key 'token'" });	
 	} else {
 		Account.remove({"member_id": info.member_id, "account_number": info.account_number}, function(err, account) {
@@ -80,3 +80,18 @@ exports.getAccounts = function(info, callback){
 		callback({status: 401, message: "missing key 'member_id'"});		
 	}
 }
+
+exports.changeAccountName = function(info, callback) {
+	if(info.account_number && info.new_account_name){
+		// Push new account onto the appropriate member's account array
+		Account.update(info.account_number, {name: info.new_account_name}, function(err, data) {
+				if (err) {
+					callback({status: 400, data: err});
+				}
+				//add our new id into the member array of accounts
+				callback({status: 200, data: data});
+		});
+	} else {
+		callback({status: 401, message: "missing key 'account_number' or 'new_account_name'"});	
+	}
+});
