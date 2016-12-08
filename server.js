@@ -114,7 +114,6 @@ app.post('/authenticate', function(req, res) {
 	});
 });
 
-// This endpoint is not protected using isAuthenticated
 app.post('/createNewMember', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {
@@ -129,7 +128,6 @@ app.post('/createNewMember', function(req, res) {
 	});
 });
 
-// In order to create an account you must have the members _id value (maybe implement a unique member number?
 app.post('/createAccount', function(req, res) {
 	getRequestInfo(req, function(info){
 		if (info.status == 400) {

@@ -42,9 +42,9 @@ exports.makeTransaction = function(info, callback){
 
 function updateAmount(amount, change, type){
 	if (type == "purchase" || type == "withdraw") {
-		return String(parseFloat(amount) - parseFloat(change));
+		return String( (parseFloat(amount) - parseFloat(change)).toFixed(2) );
 	} else if(type == "deposit") {
-		return String(parseFloat(amount) + parseFloat(change));	
+		return String( (parseFloat(amount) + parseFloat(change)).toFixed(2) );	
 	}
 }
 
