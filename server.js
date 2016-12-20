@@ -259,7 +259,7 @@ app.post('/words', function(req, res) {
 							i--;	
 						} 
 					}
-					res.send({words});
+					res.send({data: words});
 				});
 
 			} else {
@@ -269,7 +269,7 @@ app.post('/words', function(req, res) {
 
 					var random_number = Math.floor(Math.random() * textByLine.length); 
 
-					res.send({[textByLine[random_number]]});
+					res.send({data: [textByLine[random_number]]});
 				});
 			}
 		}
