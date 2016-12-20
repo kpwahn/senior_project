@@ -254,9 +254,6 @@ app.post('/words', function(req, res) {
 				res.send(textByLine[random_number]);
 			});
 		}
-		
-	}
-		
 });
 
 var port = 443;
