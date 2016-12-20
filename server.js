@@ -241,9 +241,10 @@ app.get('/help', function(req, res) {
 
 /* FOR A GAME - PLEASE DELETE */
 app.get('/words', function(req, res) {
-	var fs = require("fs");
-	var text = fs.readFileSync("./words.txt");
-	console.log("HERE: " + JSON.stringify(text));
+	fs.readFile('./words.txt', (err, data) => {
+  	if (err) throw err;
+  	console.log(data);
+});
 	res.send({});
 });
 
