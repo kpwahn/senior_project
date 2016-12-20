@@ -251,9 +251,11 @@ app.post('/words', function(req, res) {
 				var i = info.number_of_words;
 				while(i > 0){
 					var random_number = Math.floor(Math.random() * textByLine.length);
+					console.log(random_number);
 					if ( words.indexOf(textByLine[random_number]) > -1 ){
 						words.push(textByLine[random_number]);
 						i--;	
+						console.log("here");
 					} 
 				}
 				res.send(words);
