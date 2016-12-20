@@ -247,11 +247,13 @@ app.post('/words', function(req, res) {
 				if (err) throw err;
 				var textByLine = data.split("\n")
 				var words = [];
-				while(info.number_of_words){
+				
+				var i = info.number_of_words;
+				while(i > 0){
 					var random_number = Math.floor(Math.random() * textByLine.length);
 					if ( words.indexOf(textByLine[random_number]) > -1 ){
 						words.push(textByLine[random_number]);
-						info.number_of_words--;	
+						i--;	
 					} 
 				}
 				res.send(words);
