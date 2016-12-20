@@ -32,4 +32,20 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 			console.log("Error with the request " + err);
 		})
 	}
+	
+	$scope.words = function(){
+		$http.post(loginService.baseURL + "/words", {"number_of_words" : $scope.num_words})
+		.success(function (data) {
+			console.log(data);
+			array = data.data;
+			
+			var arrayLength = array.length;
+			for(var i =0; i < arrayLength; i++){
+				document.getElementById('words').innerHTML += array[i] + " ";	
+			}
+		}).
+		error(function (err) {
+			console.log("Error with the request " + err);
+		})
+	}
 }]);

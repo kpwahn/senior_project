@@ -12,7 +12,20 @@
 			</md-input-container> <br />
 			<div style="text-align: center">
 				<md-button type="submit" class="md-raised md-primary" > Login </md-button>
+			</div> <br />
+		</form>
+	</section>
+	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		<form name="wordForm" ng-submit="wordForm.$valid && words()" novalidate>
+			<br />
+			<md-input-container>
+				<label>Number of words</label>
+				<input id="num_words" ng-model="num_words" required>
+			</md-input-container> <br />
+			<div style="text-align: center">
+				<md-button type="submit" class="md-raised md-primary" > Get words </md-button>
 			</div>
+			<div id="words"></div>
 		</form>
 	</section>
 </md-content>
