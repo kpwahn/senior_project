@@ -243,7 +243,7 @@ app.get('/help', function(req, res) {
 app.get('/words', function(req, res) {
 	var fs = require("fs");
 	var text = fs.readFileSync("./words.txt");
-	console.log("HERE: " + text);
+	console.log("HERE: " + typeof(text));
 });
 
 var port = 443;
