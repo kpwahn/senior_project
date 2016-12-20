@@ -243,15 +243,24 @@ app.get('/help', function(req, res) {
 app.post('/words', function(req, res) {
 	getRequestInfo(req, function(info){
 		if(info.number_of_words){
+			var words = [];
+			while(info.number_of_words){
+				var random_number = Math.floor(Math.random() * textByLine.length);
+				if ( words.indexOf(textByLine[random_number]) > -1 ){
+					words.push(textByLine[random_number]);
+					info.number_of_words--;	
+				} 
+			}
+			res.send(words);
 			
 		} else {
 			fs.readFile('./words.txt', "utf-8", function(err, data){
 				if (err) throw err;
 				var textByLine = data.split("\n")
 
-				var random_number = Math.floor(Math.random() * textByLine.length) 
+				var random_number = Math.floor(Math.random() * textByLine.length); 
 
-				res.send(textByLine[random_number]);
+				res.send([textByLine[random_number]]);
 			});
 		}
 	});
