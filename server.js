@@ -242,32 +242,36 @@ app.get('/help', function(req, res) {
 /* FOR A GAME - PLEASE DELETE */
 app.post('/words', function(req, res) {
 	getRequestInfo(req, function(info){
-		if(info.number_of_words){
-			fs.readFile('./words.txt', "utf-8", function(err, data){
-				if (err) throw err;
-				var textByLine = data.split("\n")
-				var words = [];
-				console.log(info.number_of_words);
-				var i = info.number_of_words;
-				while(i > 0){
-					var random_number = Math.floor(Math.random() * textByLine.length);
-					if ( words.indexOf(textByLine[random_number]) == -1 ){
-						words.push(textByLine[random_number]);
-						i--;	
-					} 
-				}
-				res.send(words);
-			});
-			
+		if(info.number_of_words > 50){
+			res.send({message: "No more than 50 words per request"});	
 		} else {
-			fs.readFile('./words.txt', "utf-8", function(err, data){
-				if (err) throw err;
-				var textByLine = data.split("\n")
+			if(info.number_of_words){
+				fs.readFile('./words.txt', "utf-8", function(err, data){
+					if (err) throw err;
+					var textByLine = data.split("\n")
+					var words = [];
+					console.log(info.number_of_words);
+					var i = info.number_of_words;
+					while(i > 0){
+						var random_number = Math.floor(Math.random() * textByLine.length);
+						if ( words.indexOf(textByLine[random_number]) == -1 ){
+							words.push(textByLine[random_number]);
+							i--;	
+						} 
+					}
+					res.send({words});
+				});
 
-				var random_number = Math.floor(Math.random() * textByLine.length); 
+			} else {
+				fs.readFile('./words.txt', "utf-8", function(err, data){
+					if (err) throw err;
+					var textByLine = data.split("\n")
 
-				res.send([textByLine[random_number]]);
-			});
+					var random_number = Math.floor(Math.random() * textByLine.length); 
+
+					res.send({[textByLine[random_number]]});
+				});
+			}
 		}
 	});
 });
