@@ -240,15 +240,23 @@ app.get('/help', function(req, res) {
 });
 
 /* FOR A GAME - PLEASE DELETE */
-app.get('/words', function(req, res) {
-	fs.readFile('./words.txt', "utf-8", function(err, data){
-  	if (err) throw err;
-	var textByLine = data.split("\n")
-	
-	console.log(textByLine[0]);
-	
-});
-	res.send({});
+app.post('/words', function(req, res) {
+	getRequestInfo(req, function(info){
+		if(info.number_of_words){
+			
+		} else {
+			fs.readFile('./words.txt', "utf-8", function(err, data){
+				if (err) throw err;
+				var textByLine = data.split("\n")
+
+				var random_number = Math.floor(Math.random() * textByLine.length) 
+
+				res.send(textByLine[random_number]);
+			});
+		}
+		
+	}
+		
 });
 
 var port = 443;
