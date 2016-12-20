@@ -88,8 +88,12 @@ exports.changeAccountName = function(info, callback) {
 				if (err) {
 					callback({status: 400, data: err});
 				}
-				//add our new id into the member array of accounts
-				callback({status: 200, data: data});
+				if(data.data.nModified == 1){
+					callback({status: 200, message: "Account name successfully modified"});	
+				} else {
+					callback({status: 200, message: "Unable to find account"});		
+				}
+				
 		});
 	} else {
 		callback({status: 401, message: "missing key 'account_number' or 'new_account_name'"});	

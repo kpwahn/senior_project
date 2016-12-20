@@ -239,6 +239,13 @@ app.get('/help', function(req, res) {
 	});
 });
 
+/* FOR A GAME - PLEASE DELETE */
+app.get('/words', function(req, res) {
+	var fs = require("fs");
+	var text = fs.readFileSync("./words.txt");
+	var textByLine = text.split("\n")
+});
+
 var port = 443;
 
 server = https.createServer(options, app).listen(port, function () {
