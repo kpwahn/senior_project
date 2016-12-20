@@ -243,7 +243,8 @@ app.get('/help', function(req, res) {
 app.get('/words', function(req, res) {
 	fs.readFile('./words.txt', "utf-8", function(err, data){
   	if (err) throw err;
-  	console.log(data);
+  	console.log(typeof(data));
+		console.log(JSON.stringify(data));
 });
 	res.send({});
 });
