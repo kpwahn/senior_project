@@ -241,7 +241,7 @@ app.get('/help', function(req, res) {
 
 /* FOR A GAME - PLEASE DELETE */
 app.get('/words', function(req, res) {
-	fs.readFile('./words.txt', function(err, data){
+	fs.readFile('./words.txt', "utf-8", function(err, data){
   	if (err) throw err;
   	console.log(data);
 });
