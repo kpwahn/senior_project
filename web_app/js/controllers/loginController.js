@@ -36,7 +36,7 @@ angular.module('bankApp').controller('loginController', ['$scope', '$http', 'log
 	$scope.words = function(){
 		$http.post(loginService.baseURL + "/words", {"number_of_words" : $scope.num_words})
 		.success(function (data) {
-			console.log(data);
+			document.getElementById('words').innerHTML = " ";
 			array = data.data;
 			
 			var arrayLength = array.length;
